@@ -1,7 +1,6 @@
 """Main module."""
 
 
-from tqdm import tqdm
 from rdflib import URIRef
 from rdflib import Graph
 
