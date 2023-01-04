@@ -1,0 +1,1814 @@
+@prefix SO: <http://www.sequenceontology.org/browser/current_svn/term/SO:> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix local: <http://pflu.evolbio.mpg.de/cv/lookup/local/> .
+@prefix ns1: <http://edamontology.org/> .
+@prefix ns2: <http://purl.obolibrary.org/obo/> .
+@prefix ns3: <http://semanticscience.org/resource/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix vocab: <http://pflu.evolbio.mpg.de/web-services/doc/v0.1#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA> a vocab:TRNA_Collection ;
+    rdfs:label "TRNA Collection" ;
+    hydra:PartialCollectionView <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=1&limit=25>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=2&limit=25>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=3&limit=25> ;
+    hydra:member <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211> ;
+    hydra:totalItems 66 .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ile" ;
+    ns1:data_0842 "transcript:PFLU_7050-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7050" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566868" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49146" ;
+    schema:name "transfer RNA-Ile" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49146/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7051-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7051" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566787" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49147" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49147/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148> a SO:0000253 ;
+    rdfs:label "transfer RNA-Arg" ;
+    ns1:data_0842 "transcript:PFLU_7055-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7055" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566800" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49148" ;
+    schema:name "transfer RNA-Arg" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49148/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149> a SO:0000253 ;
+    rdfs:label "transfer RNA-Thr" ;
+    ns1:data_0842 "transcript:PFLU_7056-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7056" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566623" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49149" ;
+    schema:name "transfer RNA-Thr" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49149/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150> a SO:0000253 ;
+    rdfs:label "transfer RNA-Phe" ;
+    ns1:data_0842 "transcript:PFLU_7057-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7057" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566637" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49150" ;
+    schema:name "transfer RNA-Phe" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49150/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7058-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7058" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566746" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49151" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49151/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7059-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7059" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566590" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49152" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49152/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ile" ;
+    ns1:data_0842 "transcript:PFLU_7061-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7061" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566836" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49153" ;
+    schema:name "transfer RNA-Ile" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49153/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7062-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7062" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566555" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49154" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49154/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155> a SO:0000253 ;
+    rdfs:label "transfer RNA-Met" ;
+    ns1:data_0842 "transcript:PFLU_7065-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7065" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566807" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49155" ;
+    schema:name "transfer RNA-Met" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49155/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gln" ;
+    ns1:data_0842 "transcript:PFLU_7066-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7066" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566718" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49156" ;
+    schema:name "transfer RNA-Gln" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49156/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asn" ;
+    ns1:data_0842 "transcript:PFLU_7067-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7067" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566764" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49157" ;
+    schema:name "transfer RNA-Asn" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49157/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158> a SO:0000253 ;
+    rdfs:label "transfer RNA-Pro" ;
+    ns1:data_0842 "transcript:PFLU_7068-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7068" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566653" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49158" ;
+    schema:name "transfer RNA-Pro" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49158/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159> a SO:0000253 ;
+    rdfs:label "transfer RNA-Lys" ;
+    ns1:data_0842 "transcript:PFLU_7069-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7069" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566711" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49159" ;
+    schema:name "transfer RNA-Lys" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49159/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160> a SO:0000253 ;
+    rdfs:label "transfer RNA-Pro" ;
+    ns1:data_0842 "transcript:PFLU_7070-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7070" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566614" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49160" ;
+    schema:name "transfer RNA-Pro" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49160/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161> a SO:0000253 ;
+    rdfs:label "transfer RNA-Thr" ;
+    ns1:data_0842 "transcript:PFLU_7071-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7071" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566719" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49161" ;
+    schema:name "transfer RNA-Thr" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49161/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gly" ;
+    ns1:data_0842 "transcript:PFLU_7072-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7072" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566624" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49162" ;
+    schema:name "transfer RNA-Gly" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49162/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ser" ;
+    ns1:data_0842 "transcript:PFLU_7073-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7073" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566706" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49163" ;
+    schema:name "transfer RNA-Ser" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49163/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164> a SO:0000253 ;
+    rdfs:label "transfer RNA-Glu" ;
+    ns1:data_0842 "transcript:PFLU_7074-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7074" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566696" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49164" ;
+    schema:name "transfer RNA-Glu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49164/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gly" ;
+    ns1:data_0842 "transcript:PFLU_7075-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7075" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566760" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49165" ;
+    schema:name "transfer RNA-Gly" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49165/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166> a SO:0000253 ;
+    rdfs:label "transfer RNA-Glu" ;
+    ns1:data_0842 "transcript:PFLU_7076-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7076" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566676" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49166" ;
+    schema:name "transfer RNA-Glu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49166/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gly" ;
+    ns1:data_0842 "transcript:PFLU_7077-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7077" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566692" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49167" ;
+    schema:name "transfer RNA-Gly" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49167/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168> a SO:0000253 ;
+    rdfs:label "transfer RNA-Val" ;
+    ns1:data_0842 "transcript:PFLU_7078-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7078" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566771" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49168" ;
+    schema:name "transfer RNA-Val" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49168/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asp" ;
+    ns1:data_0842 "transcript:PFLU_7079-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7079" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566743" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49169" ;
+    schema:name "transfer RNA-Asp" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49169/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170> a SO:0000253 ;
+    rdfs:label "transfer RNA-Val" ;
+    ns1:data_0842 "transcript:PFLU_7080-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7080" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566610" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49170" ;
+    schema:name "transfer RNA-Val" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49170/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asp" ;
+    ns1:data_0842 "transcript:PFLU_7081-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7081" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566880" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49171" ;
+    schema:name "transfer RNA-Asp" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49171/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ile" ;
+    ns1:data_0842 "transcript:PFLU_7083-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7083" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566559" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49172" ;
+    schema:name "transfer RNA-Ile" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49172/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7084-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7084" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566801" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49173" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49173/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gly" ;
+    ns1:data_0842 "transcript:PFLU_7087-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7087" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566863" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49174" ;
+    schema:name "transfer RNA-Gly" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49174/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7088-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7088" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566669" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49175" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49175/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176> a SO:0000253 ;
+    rdfs:label "transfer RNA-Cys" ;
+    ns1:data_0842 "transcript:PFLU_7089-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7089" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566572" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49176" ;
+    schema:name "transfer RNA-Cys" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49176/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ser" ;
+    ns1:data_0842 "transcript:PFLU_7090-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7090" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566749" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49177" ;
+    schema:name "transfer RNA-Ser" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49177/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178> a SO:0000253 ;
+    rdfs:label "transfer RNA-His" ;
+    ns1:data_0842 "transcript:PFLU_7091-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7091" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566670" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49178" ;
+    schema:name "transfer RNA-His" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49178/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7092-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7092" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566687" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49179" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49179/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180> a SO:0000253 ;
+    rdfs:label "transfer RNA-His" ;
+    ns1:data_0842 "transcript:PFLU_7093-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7093" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566644" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49180" ;
+    schema:name "transfer RNA-His" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49180/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181> a SO:0000253 ;
+    rdfs:label "transfer RNA-Arg" ;
+    ns1:data_0842 "transcript:PFLU_7094-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7094" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566611" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49181" ;
+    schema:name "transfer RNA-Arg" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49181/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182> a SO:0000253 ;
+    rdfs:label "transfer RNA-Pro" ;
+    ns1:data_0842 "transcript:PFLU_7095-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7095" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566881" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49182" ;
+    schema:name "transfer RNA-Pro" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49182/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183> a SO:0000253 ;
+    rdfs:label "transfer RNA-Val" ;
+    ns1:data_0842 "transcript:PFLU_7096-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7096" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566794" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49183" ;
+    schema:name "transfer RNA-Val" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49183/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asp" ;
+    ns1:data_0842 "transcript:PFLU_7097-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7097" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566831" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49184" ;
+    schema:name "transfer RNA-Asp" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49184/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asp" ;
+    ns1:data_0842 "transcript:PFLU_7098-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7098" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566681" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49185" ;
+    schema:name "transfer RNA-Asp" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49185/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186> a SO:0000253 ;
+    rdfs:label "transfer RNA-Val" ;
+    ns1:data_0842 "transcript:PFLU_7099-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7099" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566671" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49186" ;
+    schema:name "transfer RNA-Val" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49186/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187> a SO:0000253 ;
+    rdfs:label "transfer RNA-Glu" ;
+    ns1:data_0842 "transcript:PFLU_7100-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7100" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566702" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49187" ;
+    schema:name "transfer RNA-Glu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49187/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7101-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7101" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566630" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49188" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49188/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189> a SO:0000253 ;
+    rdfs:label "transfer RNA-Glu" ;
+    ns1:data_0842 "transcript:PFLU_7102-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7102" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566769" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49189" ;
+    schema:name "transfer RNA-Glu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49189/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7103-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7103" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566873" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49190" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49190/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191> a SO:0000253 ;
+    rdfs:label "transfer RNA-Asn" ;
+    ns1:data_0842 "transcript:PFLU_7104-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7104" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566712" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49191" ;
+    schema:name "transfer RNA-Asn" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49191/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ser" ;
+    ns1:data_0842 "transcript:PFLU_7105-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7105" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566770" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49192" ;
+    schema:name "transfer RNA-Ser" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49192/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193> a SO:0000253 ;
+    rdfs:label "transfer RNA-Arg" ;
+    ns1:data_0842 "transcript:PFLU_7106-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7106" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566651" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49193" ;
+    schema:name "transfer RNA-Arg" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49193/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194> a SO:0000253 ;
+    rdfs:label "transfer RNA-Arg" ;
+    ns1:data_0842 "transcript:PFLU_7107-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7107" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566740" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49194" ;
+    schema:name "transfer RNA-Arg" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49194/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195> a SO:0000253 ;
+    rdfs:label "transfer RNA-Arg" ;
+    ns1:data_0842 "transcript:PFLU_7108-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7108" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566774" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49195" ;
+    schema:name "transfer RNA-Arg" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49195/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ser" ;
+    ns1:data_0842 "transcript:PFLU_7109-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7109" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566580" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49196" ;
+    schema:name "transfer RNA-Ser" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49196/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197> a SO:0000253 ;
+    rdfs:label "transfer RNA-Lys" ;
+    ns1:data_0842 "transcript:PFLU_7110-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7110" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566739" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49197" ;
+    schema:name "transfer RNA-Lys" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49197/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198> a SO:0000253 ;
+    rdfs:label "transfer RNA-Met" ;
+    ns1:data_0842 "transcript:PFLU_7111-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7111" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566860" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49198" ;
+    schema:name "transfer RNA-Met" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49198/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199> a SO:0000253 ;
+    rdfs:label "transfer RNA-Met" ;
+    ns1:data_0842 "transcript:PFLU_7112-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7112" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566824" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49199" ;
+    schema:name "transfer RNA-Met" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49199/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7113-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7113" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566795" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49200" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49200/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7116-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7116" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566890" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49201" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49201/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ile" ;
+    ns1:data_0842 "transcript:PFLU_7117-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7117" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566695" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49202" ;
+    schema:name "transfer RNA-Ile" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49202/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203> a SO:0000253 ;
+    rdfs:label "transfer RNA-Met" ;
+    ns1:data_0842 "transcript:PFLU_7119-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7119" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566652" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49203" ;
+    schema:name "transfer RNA-Met" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49203/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204> a SO:0000253 ;
+    rdfs:label "transfer RNA-Leu" ;
+    ns1:data_0842 "transcript:PFLU_7120-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7120" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566558" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49204" ;
+    schema:name "transfer RNA-Leu" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49204/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205> a SO:0000253 ;
+    rdfs:label "transfer RNA-Trp" ;
+    ns1:data_0842 "transcript:PFLU_7121-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7121" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566573" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49205" ;
+    schema:name "transfer RNA-Trp" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49205/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206> a SO:0000253 ;
+    rdfs:label "transfer RNA-Thr" ;
+    ns1:data_0842 "transcript:PFLU_7122-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7122" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566691" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49206" ;
+    schema:name "transfer RNA-Thr" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49206/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207> a SO:0000253 ;
+    rdfs:label "transfer RNA-Gly" ;
+    ns1:data_0842 "transcript:PFLU_7123-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7123" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566677" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49207" ;
+    schema:name "transfer RNA-Gly" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49207/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208> a SO:0000253 ;
+    rdfs:label "transfer RNA-Tyr" ;
+    ns1:data_0842 "transcript:PFLU_7124-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7124" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566837" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49208" ;
+    schema:name "transfer RNA-Tyr" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49208/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ala" ;
+    ns1:data_0842 "transcript:PFLU_7127-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7127" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566703" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49209" ;
+    schema:name "transfer RNA-Ala" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49209/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210> a SO:0000253 ;
+    rdfs:label "transfer RNA-Ile" ;
+    ns1:data_0842 "transcript:PFLU_7128-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7128" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566761" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49210" ;
+    schema:name "transfer RNA-Ile" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49210/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211> a SO:0000253 ;
+    rdfs:label "transfer RNA-Met" ;
+    ns1:data_0842 "transcript:PFLU_7130-0" ;
+    ns1:data_2012 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/Sequence+coordinates" ;
+    ns1:data_2044 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/Sequence" ;
+    ns1:data_2091 "" ;
+    ns1:data_2190 "d41d8cd98f00b204e9800998ecf8427e" ;
+    local:contact "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/contact" ;
+    local:frame "." ;
+    local:is_analysis false ;
+    local:is_obsolete false ;
+    local:locus_tag "PFLU_7130" ;
+    local:seqid "MPBAS00001" ;
+    local:timeaccessioned "2022-02-24 22:06:44" ;
+    local:timelastmodified "2022-02-24 22:06:44" ;
+    local:transcript_id "EBT00051566666" ;
+    ns2:OBI_0100026 <http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> ;
+    ns2:OGI_0000021 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/location+on+map" ;
+    ns2:SBO_0000374 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/relationship" ;
+    ns2:SBO_0000554 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/database+cross+reference" ;
+    ns3:SIO_001166 "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/annotation" ;
+    rdfs:type "TRNA" ;
+    schema:ItemPage "http://pflu.evolbio.mpg.de/bio_data/49211" ;
+    schema:name "transfer RNA-Met" ;
+    schema:publication "http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/49211/publication" .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=1&limit=25> a <file:///tmp/pflu.json.d/PartialCollectionView>,
+        <http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView> .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=2&limit=25> a <file:///tmp/pflu.json.d/PartialCollectionView> .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA?page=3&limit=25> a <file:///tmp/pflu.json.d/PartialCollectionView> .
+
+<http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/1> a ns2:OBI_0100026 ;
+    rdfs:label "<i>Pseudomonas fluorescens</i>" ;
+    local:infraspecific_type "subspecies" ;
+    ns2:TAXRANK_0000005 "Pseudomonas" ;
+    ns2:TAXRANK_0000006 "fluorescens" ;
+    ns2:TAXRANK_0000045 "SBW25" .
+
