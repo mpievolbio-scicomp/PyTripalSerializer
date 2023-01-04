@@ -6,10 +6,9 @@ from rdflib import Graph
 
 import requests
 import logging
-import os
 import multiprocessing
-
 import tempfile
+
 
 def parse_page(page):
     """
@@ -45,7 +44,8 @@ def get_graph(page):
 
     return grph
 
-def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count()//2):
+
+def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2):
     """
     Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
     subgraph with the same graph `g`.
@@ -75,14 +75,14 @@ def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count()//2):
 
         # We'll apply pagination with 25 items per page.
         limit = 25
-        pages = range(1, nom // limit + 2 )
+        pages = range(1, nom // limit + 2)
 
         # Get each page's URL.
         pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
 
         # Get pool of workers and  distribute tasks.
         number_of_tasks = len(pages)
-        number_of_processes=min(multiprocessing.cpu_count(), number_of_tasks)
+        number_of_processes = min(multiprocessing.cpu_count(), number_of_tasks)
         chunk_size = number_of_tasks // number_of_processes
 
         logging.info("### MultiProcessing setup")
@@ -110,28 +110,23 @@ def cleanup(grph):
     """
     Remove:
     - All subjects of type  <http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView>
-    - All objects of the subject <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA>  with property <hydra:PartialCollectionView>
+    - All objects of the subject <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA>
+    with property <hydra:PartialCollectionView>
  """
 
+    remove_terms(grph, (None, None, URIRef('file:///tmp/PartialCollectionView')))
+
     remove_terms(grph, (None,
-                        None,
-                        URIRef('file:///tmp/PartialCollectionView')
-                       )
-                      )
-
-
-    remove_terms(grph,(None,
                         None,
                         URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView')
-                       )
-                      )
+                        )
+                 )
 
     remove_terms(grph, (None,
-                      URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'),
-                      None
-                      )
-                     )
-
+                        URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'),
+                        None
+                        )
+                 )
 
 
 def remove_terms(grph, terms):

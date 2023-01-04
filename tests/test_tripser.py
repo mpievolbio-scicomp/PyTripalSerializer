@@ -2,10 +2,8 @@
 """Tests for `tripser` package."""
 
 
-from click.testing import CliRunner
-from rdflib import Graph, URIRef, RDFS
+from rdflib import Graph, URIRef
 
-from tripser import cli
 from tripser.tripser import cleanup
 from tripser.tripser import get_graph
 from tripser.tripser import parse_page
@@ -15,9 +13,8 @@ from tripser.tripser import remove_terms
 import logging
 import os
 import shutil
-import sys
-import tripser
 import unittest
+
 
 class TestTripser(unittest.TestCase):
 
@@ -25,8 +22,9 @@ class TestTripser(unittest.TestCase):
         """ Set up the test case."""
 
         self._test_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                                       'test_data'
-                                                       ))
+                                                           'test_data'
+                                                           )
+                                              )
         self.__thrashcan = []
 
     def tearDown(self):
@@ -119,7 +117,6 @@ class TestTripser(unittest.TestCase):
 
         self.assertEqual(len(graph), 1666)
 
-
     def test_cleanup(self):
         """ Test cleaning up a graph."""
 
@@ -131,6 +128,7 @@ class TestTripser(unittest.TestCase):
         cleanup(messy)
 
         self.assertEqual(len(messy), 1725)
+
 
 if __name__ == "__main__":
     unittest.main()
