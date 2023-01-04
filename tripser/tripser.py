@@ -34,6 +34,15 @@ def parse_page(page):
 
 
 def get_graph(page):
+    """ Workhorse function to download the json document and parse into the graph to be returned.
+
+    :param page: The URL of the json-ld document to download and parse.
+    :type  page: str | URIRef
+
+    :return: A graph containing all terms found in the downloaded json-ld document.
+    :rtype: rdflib.Graph
+    """
+
     with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as fh:
         logging.debug(fh.name)
 
@@ -130,6 +139,16 @@ def cleanup(grph):
 
 
 def remove_terms(grph, terms):
+    """
+    Remove terms matching the passed pattern `terms` from `grph`.
+
+    :param grph: The graph from which to remove terms.
+    :type  grph: rdflib.Graph
+
+    :param terms: Triple pattern to match against.
+    :type  terms: 3-tuple (subject, predicate, object)
+
+    """
 
     count = 0
     for t in grph.triples(terms):

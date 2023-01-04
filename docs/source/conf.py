@@ -6,14 +6,18 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import sys
+sys.path.insert(0, '../../tripser')
+import tripser
+
 project = 'PyTripalSerializer'
-copyright = '2023, Carsten Fortmann-Grote'
+copyright = '2023, Max Planck Institute for Evolutionary Biology'
 author = 'Carsten Fortmann-Grote'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = ['sphinx.ext.autodoc']
 
 templates_path = ['_templates']
 exclude_patterns = []

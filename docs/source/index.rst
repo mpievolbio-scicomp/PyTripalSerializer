@@ -11,6 +11,11 @@ Welcome to PyTripalSerializer's documentation!
    :caption: Contents:
 
 
+Reference Manual
+----------------
+
+.. automodule:: tripser
+      :members:
 
 Indices and tables
 ==================
