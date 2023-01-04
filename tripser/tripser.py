@@ -35,7 +35,7 @@ def parse_page(page):
 
 
 def get_graph(page):
-    with tempfile.NamedTemporaryFile(dir='/tmp/pflu.json.d', delete=False, suffix='.json') as fh:
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as fh:
         logging.debug(fh.name)
 
         content = requests.get(page).content
@@ -115,7 +115,7 @@ def cleanup(grph):
 
     remove_terms(grph, (None,
                         None,
-                        URIRef('file:///tmp/pflu.json.d/PartialCollectionView')
+                        URIRef('file:///tmp/PartialCollectionView')
                        )
                       )
 
