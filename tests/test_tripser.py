@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 """Tests for `tripser` package."""
-import os
-import shutil
-import sys
 
-import unittest
+
 from click.testing import CliRunner
+from rdflib import Graph, URIRef, RDFS
 
-import tripser
 from tripser import cli
+from tripser.tripser import cleanup
 from tripser.tripser import get_graph
 from tripser.tripser import parse_page
 from tripser.tripser import recursively_add
 from tripser.tripser import remove_terms
-from tripser.tripser import cleanup
 
-from rdflib import Graph, URIRef, RDFS
 import logging
+import os
+import shutil
+import sys
+import tripser
+import unittest
 
 class TestTripser(unittest.TestCase):
 
