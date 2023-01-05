@@ -1,13 +1,15 @@
 """:module: tripser - main module."""
 
 
-from rdflib import URIRef
-from rdflib import Graph
-
-import requests
+import json
 import logging
 import multiprocessing
 import tempfile
+
+import requests
+from rdflib import Graph, URIRef
+
+logging.basicConfig(level=logging.WARNING)
 
 
 def parse_page(page):
@@ -34,7 +36,7 @@ def parse_page(page):
 
 
 def get_graph(page):
-    """ Workhorse function to download the json document and parse into the graph to be returned.
+    """Workhorse function to download the json document and parse into the graph to be returned.
 
     :param page: The URL of the json-ld document to download and parse.
     :type  page: str | URIRef
@@ -59,9 +61,11 @@ def get_graph(page):
     try:
         grph.parse(fh.name)
 
-    except JSONDecodeError:
-        pass
-    except:
+    except json.decoder.JSONDecodeError:
+        logging.warning("Not a valid JSON document: %s", page)
+
+    except BaseException:
+        logging.error("Exception thrown while parsing %s.", page)
         raise
 
     return grph
@@ -139,17 +143,11 @@ def cleanup(grph):
 
     remove_terms(grph, (None, None, URIRef('file:///tmp/PartialCollectionView')))
 
-    remove_terms(grph, (None,
-                        None,
-                        URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView')
-                        )
-                 )
+    remove_terms(
+        grph, (None, None, URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView'))
+    )
 
-    remove_terms(grph, (None,
-                        URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'),
-                        None
-                        )
-                 )
+    remove_terms(grph, (None, URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'), None))
 
 
 def remove_terms(grph, terms):
