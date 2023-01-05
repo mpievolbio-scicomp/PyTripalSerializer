@@ -7,6 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import sys
+import sphinx_rtd_theme
 sys.path.insert(0, '../../tripser')
 import tripser
 
@@ -17,7 +18,9 @@ author = 'Carsten Fortmann-Grote'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx_rtd_theme',
+              ]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -27,7 +30,7 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 root_doc = 'index'
