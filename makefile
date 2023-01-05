@@ -1,6 +1,6 @@
 sources = tripser
 
-.PHONY: test format lint unittest coverage pre-commit clean
+.PHONY: test format lint unittest coverage pre-commit clean docs
 test: format lint unittest
 
 format:
@@ -18,6 +18,9 @@ coverage:
 
 pre-commit:
 	pre-commit run --all-files
+
+docs:
+	cd docs && make html
 
 clean:
 	rm -rf .pytest_cache
