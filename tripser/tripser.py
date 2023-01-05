@@ -119,9 +119,10 @@ def cleanup(grph):
     """
     Remove:
     - All subjects of type  <http://pflu.evolbio.mpg.de/web-services/content/v0.1/PartialCollectionView>
-    - All objects of the subject <http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA>
-    with property <hydra:PartialCollectionView>
- """
+    - All objects with property <hydra:PartialCollectionView>
+
+    :param grph: The graph to cleanup
+    """
 
     remove_terms(grph, (None, None, URIRef('file:///tmp/PartialCollectionView')))
 
