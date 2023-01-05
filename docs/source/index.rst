@@ -10,6 +10,7 @@ Welcome to PyTripalSerializer's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   README.md
 
 Reference Manual
 ----------------

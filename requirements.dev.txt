@@ -6,3 +6,6 @@ black
 flake8
 sphinx>=3.0
 sphinx-rtd-theme
+recommonmark
+poetry
+bump2version

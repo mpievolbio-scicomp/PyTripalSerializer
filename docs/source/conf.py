@@ -20,6 +20,7 @@ author = 'Carsten Fortmann-Grote'
 
 extensions = ['sphinx.ext.autodoc',
               'sphinx_rtd_theme',
+              'recommonmark',
               ]
 
 templates_path = ['_templates']
