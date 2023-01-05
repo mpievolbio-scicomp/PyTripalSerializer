@@ -1,4 +1,4 @@
-""":module tripser: Main module."""
+""":module: tripser - main module."""
 
 
 from rdflib import URIRef
