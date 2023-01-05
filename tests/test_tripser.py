@@ -102,12 +102,25 @@ class TestTripser(unittest.TestCase):
             66
         )
 
+    def test_get_graph_corrupt_json(self):
+        """ Test get_graph() for a corrupt json file."""
+
+        raise NotImplementedError
+
     def test_get_graph_no_members(self):
         """ Test get_graph() with a document that has an empty members list."""
 
         page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region?page=781&limit=25"
 
         g = get_graph(page)
+
+        self.assertIsInstance(g, Graph)
+        self.assertEqual(len(g), 5)
+
+    def test_parse_page_no_members(self):
+        page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region?page=781&limit=25"
+
+        g = parse_page(page)
 
         self.assertIsInstance(g, Graph)
         self.assertEqual(len(g), 5)
