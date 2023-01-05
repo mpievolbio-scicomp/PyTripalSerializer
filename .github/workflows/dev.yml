@@ -58,8 +58,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: build documentation
-        run:
-          make docs
+        run: |
+          cd docs
+          make html
 
       - name: publish documentation
         uses: uibcdf/action-sphinx-docs-to-gh-pages@v1.0.0
