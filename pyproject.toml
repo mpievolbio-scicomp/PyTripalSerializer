@@ -2,7 +2,7 @@
 [tool.poetry]
 name = "pytripalserializer"
 version = "0.0.1"
-homepage = "https://github.com/CFGrote/pytripalserializer"
+homepage = "https://github.com/CFGrote/PyTripalSerializer"
 description = "Serialize Tripal's JSON-LD API into RDF.."
 authors = ["Carsten Fortmann-Grote <carsten.fortmann-grote@evolbio.mpg.de>"]
 readme = "README.md"
@@ -13,10 +13,11 @@ classifiers=[
     'License :: OSI Approved :: MIT License',
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
 ]
 packages = [
     { include = "tripser" },
@@ -24,7 +25,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
+python = ">=3.7.0,<4.0"
 click = "8.0.1"
 
 black  = { version = "^21.5b2", optional = true}
@@ -36,11 +37,6 @@ pytest-cov  = { version = "^2.12.0", optional = true}
 tox  = { version = "^3.20.1", optional = true}
 virtualenv  = { version = "^20.2.2", optional = true}
 pip  = { version = "^20.3.1", optional = true}
-mkdocs  = { version = "^1.1.2", optional = true}
-mkdocs-include-markdown-plugin  = { version = "^1.0.0", optional = true}
-mkdocs-material  = { version = "^6.1.7", optional = true}
-mkdocstrings  = { version = "^0.15.2", optional = true}
-mkdocs-material-extensions  = { version = "^1.0.1", optional = true}
 twine  = { version = "^3.3.0", optional = true}
 mkdocs-autorefs = {version = "^0.2.1", optional = true}
 pre-commit = {version = "^2.12.0", optional = true}
@@ -60,21 +56,17 @@ test = [
 dev = ["tox", "pre-commit", "virtualenv", "pip", "twine", "toml", "bump2version"]
 
 doc = [
-    "mkdocs",
-    "mkdocs-include-markdown-plugin",
-    "mkdocs-material",
-    "mkdocstrings",
-    "mkdocs-material-extension",
-    "mkdocs-autorefs"
+    "sphinx",
+    "sphinx-rtd-theme"
     ]
 
 [tool.poetry.scripts]
-pytripalserializer = 'tripser.cli:main'
+pytripalserializer = 'tripser.cli:cli'
 
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py39', 'py37', 'py38']
 include = '\.pyi?$'
 exclude = '''
 /(
