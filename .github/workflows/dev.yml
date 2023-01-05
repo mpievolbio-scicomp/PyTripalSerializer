@@ -38,7 +38,7 @@ jobs:
 
       - name: test with unittest/pytest
         run:
-          make unittest
+          make test
 
       - name: coverage with pytest-cov
         run:
