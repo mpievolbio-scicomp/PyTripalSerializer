@@ -1,5 +1,5 @@
 -r requirements.txt
 pytest
 pytest-cov
-sphinx
+sphinx>=3.0
 sphinx-rtd-theme
