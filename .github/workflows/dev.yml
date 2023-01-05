@@ -58,7 +58,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: build documentation
-        run: |
+        run:
           make docs
 
       - name: publish documentation
@@ -69,3 +69,4 @@ jobs:
           # sphinxapiopts: '--separate -o . # ../'
           # sphinxapiexclude: '../*setup* ../*.ipynb'
           # sphinxopts: ''
+    # needs: test
