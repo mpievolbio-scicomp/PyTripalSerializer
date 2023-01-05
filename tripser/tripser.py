@@ -3,6 +3,7 @@
 
 import json
 import logging
+import math
 import multiprocessing
 import tempfile
 
@@ -101,7 +102,7 @@ def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2
 
         # We'll apply pagination with 25 items per page.
         limit = 25
-        pages = range(1, nom // limit + 2)
+        pages = range(1, math.ceil(nom / limit) + 1)
 
         # Get each page's URL.
         pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
