@@ -41,15 +41,28 @@ def get_graph(page):
 
     :return: A graph containing all terms found in the downloaded json-ld document.
     :rtype: rdflib.Graph
+
     """
 
     with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as fh:
         logging.debug(fh.name)
 
-        content = requests.get(page).content
+        response = requests.get(page)
+        content = response.content
+
+        logging.debug(response.text)
+
         fh.write(content)
 
-    grph = Graph().parse(fh.name)
+    grph = Graph()
+
+    try:
+        grph.parse(fh.name)
+
+    except JSONDecodeError:
+        pass
+    except:
+        raise
 
     return grph
 
