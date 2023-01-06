@@ -1,6 +1,6 @@
 # PyTripalSerializer
 [![Documentation Status](https://readthedocs.org/projects/pytripalserializer/badge/?version=latest)](https://pytripalserializer.readthedocs.io/en/latest/?badge=latest)
-
+[![build & test](https://github.com/mpievolbio-scicomp/PyTripalSerializer/actions/workflows/dev.yml/badge.svg)](https://github.com/mpievolbio-scicomp/PyTripalSerializer/actions/workflows/dev.yml)
 ## Serialize Tripal's JSON-LD API into RDF format
 This package implements a recursive algorithm to parse the JSON-LD API of a [Tripal](https://tripal.info "Tripal")
 genomic database webservice and serialize the encountered terms into a RDF document. Output will be saved in
