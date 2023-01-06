@@ -7,7 +7,7 @@ genomic database webservice and serialize the encountered terms into a RDF docum
 a turtle file (.ttl).
 
 ## Motivation
-This work is a byproduct of a data integration project for multiomics data at[MPI for Evolutionary Biology](https://evolbio.mpg.de). Among various other data sources, we run an instance of the Tripal genomic database website engine. This
+This work is a byproduct of a data integration project for multiomics data at [MPI for Evolutionary Biology](https://evolbio.mpg.de). Among various other data sources, we run an instance of the Tripal genomic database website engine. This
 service provides a [JSON-LD](https://json-ld.org/) API, i.e., all data in the underlying relational database is accessible through appropriate http GET requests against that API. So far so good. Now, in our project, we are working
 on integrating data based on Linked Data technology; in particular, all data sources should be accessible via (federated) SPARQL queries. Hence, the task is to convert the JSON-LD API into a SPARQL endpoint.
 
