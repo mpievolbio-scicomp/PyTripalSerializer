@@ -3,7 +3,7 @@
 
 ## Serialize Tripal's JSON-LD API into RDF format
 This package implements a recursive algorithm to parse the JSON-LD API of a [Tripal](https://tripal.info "Tripal")
-genomic database webservice and serialize the encountered terms into a RDF document. Output will be saved in a
+genomic database webservice and serialize the encountered terms into a RDF document. Output will be saved in
 a turtle file (.ttl).
 
 ## Motivation
@@ -13,10 +13,11 @@ on integrating data based on Linked Data technology; in particular, all data sou
 
 The challenge here is that the JSON-LD API only provides one document at a time. Querying a single document with e.g.
 the `arq` utility (part of the [Apache-Jena](https://jena.apache.org/) package) is no problem. The problem starts
-when one then attempts to run queries against other JSON-LD documents referenced in the first document as object IRIs but. These object IRIs are not part of the current document (graph) and SPARQL in its current implementation
-does not support dynamic generation of graph URIs. Hence the need for a code that recursively parses a JSON-LD document including all referenced documents.
+when one then attempts to run queries against other JSON-LD documents referenced in the first document as object URIs but. These object URIs are not part of the current document (graph). Instead, they point to separate graph.
+SPARQL in its current implementation does not support dynamic generation of graph URIs from e.g. object URIs.
+Hence the need for a code that recursively parses a JSON-LD document including all referenced documents.
 
-While this is a generic problem, the current implementation aims only at Tripal(v3) websites.
+Of course this is a generic problem. This package implements a solution targeted for Tripal JSON-LD APIs but with minimal changes it should be adaptable for other JSON-LD APIs.
 ## Installation
 
 ### PyPI Releases

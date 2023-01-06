@@ -20,12 +20,13 @@ author = 'Carsten Fortmann-Grote'
 
 extensions = ['sphinx.ext.autodoc',
               'sphinx_rtd_theme',
-              'recommonmark',
+              'myst_parser',
               ]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
+source_suffix = ['.rst', '.md']
 
 
 # -- Options for HTML output -------------------------------------------------
