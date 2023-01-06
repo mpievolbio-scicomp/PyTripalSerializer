@@ -6,6 +6,6 @@ black
 flake8
 sphinx>=3.0
 sphinx-rtd-theme
-recommonmark
+myst_parser
 poetry
 bump2version

@@ -10,7 +10,8 @@ Welcome to PyTripalSerializer's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   README.md
+.. include:: README.md
+   :parser: myst_parser.sphinx_
 
 Reference Manual
 ----------------
