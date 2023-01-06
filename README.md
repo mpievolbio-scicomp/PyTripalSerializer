@@ -21,7 +21,7 @@ Of course this is a generic problem. This package implements a solution targeted
 ## Installation
 
 ### PyPI Releases
-This package is released via the Python Package Index (PyPI). To install it, runaway
+This package is released via the Python Package Index (PyPI). To install it, run
 
 ```console
 $ pip install pytripalserializer
