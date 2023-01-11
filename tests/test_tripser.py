@@ -11,8 +11,7 @@ from rdflib import Graph, URIRef
 
 from tripser.tripser import cleanup, get_graph, parse_page, recursively_add, remove_terms
 
-logging.getLogger(__name__).setLevel(logging.INFO)
-
+logging.basicConfig(level=logging.DEBUG)
 
 class TestTripser(unittest.TestCase):
     def setUp(self):
@@ -56,10 +55,20 @@ class TestTripser(unittest.TestCase):
         # There should be 40 terms in this graph.
         self.assertEqual(len(graph), 40)
 
+    def test_recursively_add_cds(self):
+        """Test adding a CDS with all subclasses."""
+
+        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11845"
+
+        cds_graph = recursively_add(Graph(), cds_page)
+
+        self.assertIsInstance(cds_graph, Graph)
+        self.assertEqual(len(cds_graph), 570)
+
     def test_parse_page_cds(self):
         """Test parsing a CDS with all subclasses."""
 
-        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11845"
+        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS?page=1&limit=1"
 
         cds_graph = parse_page(cds_page)
 

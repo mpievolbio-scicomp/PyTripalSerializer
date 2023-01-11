@@ -12,7 +12,7 @@ import urllib
 import requests
 from rdflib import Graph, URIRef
 
-logging.getLogger(__name__).setLevel(logging.WARN)
+# logging.getLogger(__name__).setLevel(logging.WARN)
 
 
 def parse_page(page):
@@ -32,6 +32,8 @@ def parse_page(page):
     logging.debug("parse_page(page=%s)", str(page))
     grph = get_graph(page)
 
+    subjects = [s for s in grph.subjects()]
+
     logging.debug("# Terms")
     for term in grph:
         logging.debug("\t %s", str(term))
@@ -39,6 +41,7 @@ def parse_page(page):
         if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
             continue
         if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+            logging.debug("Descending into 'recursively_add()'")
             grph = recursively_add(grph, obj)
     return grph
 
@@ -92,9 +95,10 @@ def recursively_add_serial(g, ref):
     :type  ref: URIRef | str
     """
 
+    logging.debug("recursively_add(g=%s, ref=%s)", str(g), str(ref))
     # First parse the document into a local g.
-    gloc = get_graph(ref)
-    # gloc = Graph().parse(ref)
+    # gloc = get_graph(ref)
+    gloc = parse_page(ref)
 
     # Get total item count.
     number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
@@ -119,15 +123,8 @@ def recursively_add_serial(g, ref):
             logging.debug("\t %s", page)
 
         igraphs = (parse_page(page) for page in pages)
-        # with multiprocessing.Pool(processes=number_of_processes) as pool:
-        #     logging.debug("Setup pool %s.", str(pool))
-        #     list_of_graphs = pool.map_async(parse_page, pages, chunksize=chunk_size).get()
 
-        #     pool.close()
-            # pool.join()
-        logging.info("Done parsing subgraphs in %s.", ref)
-
-        logging.info("Merging subgraphs in %s.", ref)
+        logging.info("Parsing and merging subgraphs in %s.", ref)
         for grph in igraphs:
             gloc = gloc + grph
 
