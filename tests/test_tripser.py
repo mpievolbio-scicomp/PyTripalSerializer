@@ -11,6 +11,8 @@ from rdflib import Graph, URIRef
 
 from tripser.tripser import cleanup, get_graph, parse_page, recursively_add, remove_terms
 
+logging.getLogger(__name__).setLevel(logging.INFO)
+
 
 class TestTripser(unittest.TestCase):
     def setUp(self):
@@ -98,7 +100,33 @@ class TestTripser(unittest.TestCase):
         self.assertIsInstance(g, Graph)
         self.assertEqual(len(g), 42)
 
-    def test_recursively_add_class(self):
+    def test_recursively_add_trna(self):
+        """Test recursively adding terms to a graph (with members)."""
+        g = recursively_add(Graph(), ref=URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA'))
+
+        logging.debug("# Terms")
+        for term in g:
+            logging.debug("\t %s", str(term))
+        self.assertEqual(len(g), 1731)
+
+        # Get number of unique TMRNAs subjects, should be 1.
+        self.assertEqual(
+            len(
+                [
+                    tr
+                    for tr in g.triples(
+                        (
+                            None,
+                            URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+                            URIRef('http://www.sequenceontology.org/browser/current_svn/term/SO:0000253'),
+                        )
+                    )
+                ]
+            ),
+            66,
+        )
+
+    def test_recursively_add_tmrna(self):
         """Test recursively adding terms to a graph (with members)."""
         g = recursively_add(Graph(), ref=URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
 

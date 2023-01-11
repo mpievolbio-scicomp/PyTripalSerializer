@@ -12,7 +12,7 @@ import urllib
 import requests
 from rdflib import Graph, URIRef
 
-logging.basicConfig(level=logging.DEBUG)
+logging.getLogger(__name__).setLevel(logging.WARN)
 
 
 def parse_page(page):
