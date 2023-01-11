@@ -29,6 +29,19 @@ class TestTripser(unittest.TestCase):
             elif os.path.isdir(item):
                 shutil.rmtree(item)
 
+    def test_get_graph_dbxref(self):
+        """Test parsing a URL for dbxref's into a graph."""
+
+        page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11845/database%20cross%20reference"
+
+        graph = get_graph(page)
+
+        self.assertIsInstance(graph, Graph)
+
+        # There should be 40 terms in this graph.
+        self.assertEqual(len(graph), 125)
+
+
     def test_get_graph(self):
         """Test parsing a URL into a graph."""
 
@@ -40,6 +53,16 @@ class TestTripser(unittest.TestCase):
 
         # There should be 40 terms in this graph.
         self.assertEqual(len(graph), 40)
+
+    def test_parse_page_cds(self):
+        """Test parsing a CDS with all subclasses."""
+
+        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11845"
+
+        cds_graph = parse_page(cds_page)
+
+        self.assertIsInstance(cds_graph, Graph)
+        self.assertEqual(len(cds_graph), 570)
 
     def test_parse_page(self):
         """Test parsing a URL with members."""
@@ -77,11 +100,14 @@ class TestTripser(unittest.TestCase):
 
     def test_recursively_add_class(self):
         """Test recursively adding terms to a graph (with members)."""
-        g = recursively_add(Graph(), ref=URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA'))
+        g = recursively_add(Graph(), ref=URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
 
-        self.assertEqual(len(g), 1732)
+        logging.debug("# Terms")
+        for term in g:
+            logging.debug("\t %s", str(term))
+        self.assertEqual(len(g), 42)
 
-        # Get number of unique TRNAs subjects, should be 66.
+        # Get number of unique TMRNAs subjects, should be 1.
         self.assertEqual(
             len(
                 [
@@ -90,12 +116,12 @@ class TestTripser(unittest.TestCase):
                         (
                             None,
                             URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-                            URIRef('http://www.sequenceontology.org/browser/current_svn/term/SO:0000253'),
+                            URIRef('http://www.sequenceontology.org/browser/current_svn/term/SO:0000584'),
                         )
                     )
                 ]
             ),
-            66,
+            1,
         )
 
     def test_get_graph_corrupt_json(self):

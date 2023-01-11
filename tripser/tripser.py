@@ -4,13 +4,15 @@
 import json
 import logging
 import math
-import multiprocessing
+from pathos.multiprocessing import ProcessPool
+import pathos.multiprocessing as multiprocess
 import tempfile
 
+import urllib
 import requests
 from rdflib import Graph, URIRef
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.DEBUG)
 
 
 def parse_page(page):
@@ -27,14 +29,18 @@ def parse_page(page):
     :rtype: Graph
     """
 
-    logging.debug("Getting %s", page)
+    logging.debug("parse_page(page=%s)", str(page))
     grph = get_graph(page)
 
-    for o in grph.objects(predicate=URIRef('http://www.w3.org/ns/hydra/core#member'), unique=True):
-        grph = recursively_add(grph, o)
-
+    logging.debug("# Terms")
+    for term in grph:
+        logging.debug("\t %s", str(term))
+        subj, pred, obj = term
+        if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
+            continue
+        if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+            grph = recursively_add(grph, obj)
     return grph
-
 
 def get_graph(page):
     """Workhorse function to download the json document and parse into the graph to be returned.
@@ -47,32 +53,88 @@ def get_graph(page):
 
     """
 
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as fh:
-        logging.debug(fh.name)
-
-        response = requests.get(page)
-        content = response.content
-
-        logging.debug(response.text)
-
-        fh.write(content)
-
+    logging.debug("get_graph(graph=%s)", str(page))
+    logging.debug("Setting up empty graph.")
     grph = Graph()
 
+    logging.debug("Attempting to parse %s", page)
     try:
-        grph.parse(fh.name)
+        response = requests.get(page, timeout=600)
+        jsn = json.dumps(response.json())
+        jsn = jsn.replace('https://pflu', 'http://pflu')
+        jsn = urllib.parse.unquote(jsn)
+
+        grph.parse(data=jsn, format='json-ld')
+
 
     except json.decoder.JSONDecodeError:
+        logging.warning("Not a valid JSON document: %s", page)
+
+    except requests.exceptions.JSONDecodeError:
         logging.warning("Not a valid JSON document: %s", page)
 
     except BaseException:
         logging.error("Exception thrown while parsing %s.", page)
         raise
 
+    logging.debug("Parsed %d terms.", len(grph))
     return grph
 
+def recursively_add_serial(g, ref):
+    """
+    Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
+    subgraph with the same graph `g`. Serial implementation
 
-def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2):
+    :param g: The graph into which all terms are to be inserted.
+    :type  g: rdflib.Graph
+
+    :param ref: The URL of the document to (recursively) parse into the graph
+    :type  ref: URIRef | str
+    """
+
+    # First parse the document into a local g.
+    gloc = get_graph(ref)
+    # gloc = Graph().parse(ref)
+
+    # Get total item count.
+    number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+
+    # If there are any member, parse them recursively.
+    if number_of_members != []:
+        # Convert to python type.
+        nom = number_of_members[0].toPython()
+        if nom == 0:
+            return g + gloc
+
+        logging.info("Found %d members in %s.", nom, ref.toPython())
+
+        # We'll apply pagination with 25 items per page.
+        limit = 25
+        pages = range(1, math.ceil(nom / limit) + 1)
+
+        # Get each page's URL.
+        pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
+        logging.debug("# PAGES")
+        for page in pages:
+            logging.debug("\t %s", page)
+
+        igraphs = (parse_page(page) for page in pages)
+        # with multiprocessing.Pool(processes=number_of_processes) as pool:
+        #     logging.debug("Setup pool %s.", str(pool))
+        #     list_of_graphs = pool.map_async(parse_page, pages, chunksize=chunk_size).get()
+
+        #     pool.close()
+            # pool.join()
+        logging.info("Done parsing subgraphs in %s.", ref)
+
+        logging.info("Merging subgraphs in %s.", ref)
+        for grph in igraphs:
+            gloc = gloc + grph
+
+    return g + gloc
+
+
+def recursively_add(g, ref):
     """
     Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
     subgraph with the same graph `g`.
@@ -84,9 +146,11 @@ def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2
     :type  ref: URIRef | str
     """
 
+    return recursively_add_serial(g, ref)
+
     # First parse the document into a local g.
-    # gloc = get_graph(ref)
-    gloc = Graph().parse(ref)
+    gloc = get_graph(ref)
+    # gloc = Graph().parse(ref)
 
     # Get total item count.
     number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
@@ -109,7 +173,7 @@ def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2
 
         # Get pool of workers and  distribute tasks.
         number_of_tasks = len(pages)
-        number_of_processes = min(multiprocessing.cpu_count(), number_of_tasks)
+        number_of_processes = min(multiprocess.cpu_count(), number_of_tasks)
         chunk_size = number_of_tasks // number_of_processes
 
         logging.info("### MultiProcessing setup")
@@ -117,9 +181,9 @@ def recursively_add(g, ref, number_of_processes=multiprocessing.cpu_count() // 2
         logging.info("### Number of processes:\t%d", number_of_processes)
         logging.info("### Chunk size:\t\t%d", chunk_size)
 
-        with multiprocessing.Pool(processes=number_of_processes) as pool:
+        with ProcessPool(nodes=number_of_processes) as pool:
             logging.debug("Setup pool %s.", str(pool))
-            list_of_graphs = pool.map_async(parse_page, pages, chunksize=chunk_size).get()
+            list_of_graphs = pool.amap(parse_page, pages, chunksize=chunk_size).get()
 
             pool.close()
             pool.join()
