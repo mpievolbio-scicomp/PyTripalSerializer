@@ -8,6 +8,7 @@ from rdflib import Graph
 
 from tripser import tripser
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tripser.cli")
 logger.setLevel(logging.INFO)
 
@@ -21,15 +22,20 @@ def cli(url, out):
     click.echo("=" * len("pytripalserializer"))
     click.echo("Serialize Tripal's JSON-LD API into RDF.")
 
+    parser = tripser.RecursiveJSONLDParser(url)
+
     try:
-        g = tripser.recursively_add(Graph(), url)
+        parser.parse()
+        g = parser.graph
         tripser.cleanup(g)
         g.serialize(out)
         logger.info(
             "Successfully parsed %s. After cleanup, %d triples remain and will be written to %s", url, len(g), out
         )
-    except Exception:
+    except Exception as e:
         logger.error("Could not parse '%s', please check the URL.", url)
+        if logger.level == logging.DEBUG:
+            raise e
 
 
 if __name__ == "__main__":

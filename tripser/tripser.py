@@ -114,11 +114,6 @@ class RecursiveJSONLDParser():
         :param ref: The URL of the document to (recursively) parse into the graph
         :type  ref: URIRef | str
         """
-        if str(ref) in self.__parsed_pages:
-            logger.debug("Already parsed or parsing: %s", str(page))
-            return Graph()
-
-        self.__parsed_pages.append(str(ref))
         logger.debug("recursively_add(g=%s, ref=%s)", str(g), str(ref))
         # First parse the document into a local g.
         # gloc = get_graph(ref)

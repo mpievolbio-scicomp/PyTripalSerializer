@@ -47,7 +47,7 @@ class CLITest(unittest.TestCase):
         g = Graph().parse('graph.ttl')
 
         self.assertEqual(response.exit_code, 0)
-        self.assertEqual(len(g), 42)
+        self.assertEqual(len(g), 674)
 
     def test_cds_11846_nondefault_output(self):
         """Test parsing a json document and load as graph from specified output file."""
@@ -60,7 +60,7 @@ class CLITest(unittest.TestCase):
         g = Graph().parse('11846.ttl')
 
         self.assertEqual(response.exit_code, 0)
-        self.assertEqual(len(g), 42)
+        self.assertEqual(len(g), 674)
 
 
 if __name__ == "__main__":

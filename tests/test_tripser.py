@@ -65,7 +65,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         parser.parse()
 
         self.assertIsInstance(parser.graph, Graph)
-        self.assertGreater(len(parser.graph), 800)
+        self.assertEqual(len(parser.graph), 923)
 
     def test_parse_page_cds(self):
         """Test parsing a CDS with all subclasses."""
@@ -77,7 +77,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         cds_graph = parser.parse_page(cds_page)
 
         self.assertIsInstance(cds_graph, Graph)
-        self.assertGreater(len(cds_graph), 800)
+        self.assertEqual(len(cds_graph), 1377)
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
@@ -90,7 +90,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         cds_graph = parser.parse_page(cds_page)
 
         self.assertIsInstance(cds_graph, Graph)
-        self.assertGreater(len(cds_graph), 5300)
+        self.assertEqual(len(cds_graph), 5300)
 
         # Get number of unique CDS subjects, should be 10.
         self.assertEqual(
@@ -117,7 +117,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
                                    ref=URIRef(parser.entry_point))
 
         self.assertIsInstance(g, Graph)
-        self.assertGreater(len(g), 600)
+        self.assertEqual(len(g), 674)
 
     @unittest.skip("Takes too long.")
     def test_recursively_add_trna(self):
@@ -130,7 +130,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         logging.debug("# Terms")
         for term in g:
             logging.debug("\t %s", str(term))
-        self.assertGreater(len(g), 4500)
+        self.assertEqual(len(g), 4500)
 
         # Get number of unique TRNAs subjects, should be 1.
         self.assertEqual(
@@ -158,7 +158,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         logging.debug("# Terms")
         for term in g:
             logging.debug("\t %s", str(term))
-        self.assertGreater(len(g), 100)
+            self.assertEqual(len(g), 136)
 
         # Get number of unique TMRNAs subjects, should be 1.
         self.assertEqual(
@@ -176,6 +176,38 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
             ),
             1,
         )
+
+    def test_construct_and_parse(self):
+        """ Test instantiating and using the class. """
+
+        # Construct the parser.
+        parser = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
+
+        # Parse.
+        parser.parse()
+
+        # Get the graph.
+        g = parser.graph
+
+        # Clean it up.
+        cleanup(g)
+
+        self.assertGreater(len(g), 0)
+
+    def test_graph_len_consistent(self):
+        """ Test that the length of the queried graph is always the same in consequtive parsings"""
+
+        parser_1 = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
+        parser_1.parse()
+        g_1 = parser_1.graph
+        cleanup(g_1)
+
+        parser_2 = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
+        parser_2.parse()
+        g_2 = parser_2.graph
+        cleanup(g_2)
+
+        self.assertEqual(len(g_1), len(g_2))
 
     def test_get_graph_corrupt_json(self):
         """Test get_graph() for a corrupt json file."""
