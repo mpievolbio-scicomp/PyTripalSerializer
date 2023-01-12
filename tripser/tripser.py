@@ -93,14 +93,15 @@ class RecursiveJSONLDParser():
             logger.debug("\t %s", str(term))
             subj, pred, obj = term
             if str(obj) in self.__parsed_pages:
-                logger.debug("Already parsed or parsing: %s", str(page))
+                logger.debug("Already parsed or parsing: %s", str(obj))
                 continue
             if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
                 continue
             if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
-                self.__parsed_pages.append(str(page))
+                self.__parsed_pages.append(str(obj))
                 logger.debug("Descending into 'recursively_add()'")
                 grph = self.recursively_add(grph, obj)
+
         return grph
 
     def recursively_add_serial(self, g, ref):
