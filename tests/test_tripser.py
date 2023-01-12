@@ -9,11 +9,12 @@ import unittest
 
 from rdflib import Graph, URIRef
 
-from tripser.tripser import cleanup, get_graph, parse_page, recursively_add, remove_terms
+from tripser.tripser import RecursiveJSONLDParser
+from tripser.tripser import cleanup, get_graph, remove_terms
 
 logging.basicConfig(level=logging.DEBUG)
 
-class TestTripser(unittest.TestCase):
+class TestRecursiveJSONLDParser(unittest.TestCase):
     def setUp(self):
         """Set up the test case."""
 
@@ -60,20 +61,23 @@ class TestTripser(unittest.TestCase):
 
         cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11845"
 
-        cds_graph = recursively_add(Graph(), cds_page)
+        parser = RecursiveJSONLDParser(cds_page)
+        parser.parse()
 
-        self.assertIsInstance(cds_graph, Graph)
-        self.assertEqual(len(cds_graph), 570)
+        self.assertIsInstance(parser.graph, Graph)
+        self.assertEqual(len(parser.graph), 570)
 
     def test_parse_page_cds(self):
         """Test parsing a CDS with all subclasses."""
 
         cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS?page=1&limit=1"
 
-        cds_graph = parse_page(cds_page)
+        parser = RecursiveJSONLDParser(cds_page)
 
-        self.assertIsInstance(cds_graph, Graph)
-        self.assertEqual(len(cds_graph), 570)
+        parser.parse_page(cds_page)
+
+        self.assertIsInstance(parser.graph, Graph)
+        self.assertEqual(len(parser.graph), 570)
 
     def test_parse_page(self):
         """Test parsing a URL with members."""
