@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "pytripalserializer"
-version = "0.0.2"
+version = "0.0.3"
 homepage = "https://github.com/CFGrote/PyTripalSerializer"
 description = "Serialize Tripal's JSON-LD API into RDF.."
 authors = ["Carsten Fortmann-Grote <carsten.fortmann-grote@evolbio.mpg.de>"]
