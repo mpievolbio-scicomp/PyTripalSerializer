@@ -4,9 +4,6 @@
 import json
 import logging
 import math
-from pathos.multiprocessing import ProcessPool
-import pathos.multiprocessing as multiprocess
-import tempfile
 
 import urllib
 import requests
@@ -85,8 +82,6 @@ class RecursiveJSONLDParser:
         logger.debug("parse_page(page=%s)", str(page))
 
         grph = get_graph(page)
-
-        subjects = [s for s in grph.subjects()]
 
         logger.debug("# Terms")
         for term in grph:
