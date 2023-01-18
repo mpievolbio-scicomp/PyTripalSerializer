@@ -7,7 +7,7 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef, BNode
+from rdflib import Graph, URIRef, BNode, Namespace
 
 from tripser.tripser import RecursiveJSONLDParser
 from tripser.tripser import cleanup, get_graph, remove_terms
@@ -179,6 +179,42 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
             ),
             1,
         )
+
+    def test_namespaces(self):
+        """Test that rdflib namespaces are bound to the graph attribute. """
+
+        # Construct the parser.
+        parser = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/'))
+
+        namespaces_in_default_graph = [ns[1] for ns in parser.graph.namespace_manager.namespaces()]
+
+        # Check that pflu namespaces are present.
+        pflu_namespaces = [
+            URIRef('http://pflu.evolbio.mpg.de/cv/lookup/local/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/'),
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/')
+        ]
+
+        for pflu_ns in pflu_namespaces:
+            self.assertIn(pflu_ns, namespaces_in_default_graph)
+
+
+
+        # Parse.
+        parser.parse()
+
+        # Get the graph.
+        g = parser.graph
+
+        # Clean it up.
+        cleanup(g)
+
+        self.assertGreater(len(g), 0)
 
     def test_construct_and_parse(self):
         """Test instantiating and using the class."""

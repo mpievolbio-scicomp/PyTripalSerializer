@@ -7,7 +7,7 @@ import math
 
 import urllib
 import requests
-from rdflib import Graph, URIRef
+from rdflib import Graph, URIRef, Namespace
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,21 @@ class RecursiveJSONLDParser:
 
         self.__parsed_pages = []
 
-        self.graph = Graph()
+        self.graph = Graph(bind_namespaces='rdflib')
+        self.graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
+        self.graph.bind('edam', Namespace("http://edamontology.org/"))
+        self.graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
+        self.graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
+        self.graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
+        self.graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
+        self.graph.bind("pflutranscript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
+        self.graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
+        self.graph.bind("pflucv", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
+        self.graph.bind("pflucds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
+        self.graph.bind("pflumrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
+        self.graph.bind("pflugene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
+        self.graph.bind("pfluexon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
+        self.graph.bind("pfluorganism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
 
         self.entry_point = URIRef(entry_point)
 
