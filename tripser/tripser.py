@@ -14,11 +14,12 @@ from rdflib import Graph, URIRef
 
 logger = logging.getLogger(__name__)
 
-class RecursiveJSONLDParser():
+
+class RecursiveJSONLDParser:
     """:class: This class implements recursive parsing of JSON-LD documents."""
 
     def __init__(self, entry_point=None):
-        """ Initialize the recursine JSON-LD parser.
+        """Initialize the recursine JSON-LD parser.
 
         :param root: The entry point for parsing.
         :type  root: str | rdflib.URIRef | rdflib.Literal
@@ -38,7 +39,6 @@ class RecursiveJSONLDParser():
     @parsed_pages.setter
     def parsed_pages(self, value):
         raise RuntimeError("parsed_pages is a read-only property.")
-
 
     @property
     def graph(self):
@@ -150,7 +150,6 @@ class RecursiveJSONLDParser():
 
         return g + gloc
 
-
     def recursively_add(self, g, ref):
         """
         Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
@@ -165,12 +164,14 @@ class RecursiveJSONLDParser():
 
         return self.recursively_add_serial(g, ref)
 
+
 #         # First parse the document into a local g.
 #         gloc = get_graph(ref)
 #         # gloc = Graph().parse(ref)
 
 #         # Get total item count.
-#         number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+#         number_of_members = [ti for ti in gloc.objects(
+#                                 predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
 
 #         # If there are any member, parse them recursively.
 #         if number_of_members != []:
@@ -213,6 +214,7 @@ class RecursiveJSONLDParser():
 
 #         return g + gloc
 
+
 def cleanup(grph):
     """
     Remove:
@@ -229,6 +231,7 @@ def cleanup(grph):
     )
 
     remove_terms(grph, (None, URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'), None))
+
 
 def remove_terms(grph, terms):
     """
@@ -248,7 +251,6 @@ def remove_terms(grph, terms):
         count += 1
 
     logger.debug("Removed %d terms matching triple pattern (%s, %s, %s).", count, *terms)
-
 
 
 def get_graph(page):
@@ -274,7 +276,6 @@ def get_graph(page):
         jsn = urllib.parse.unquote(jsn)
 
         grph.parse(data=jsn, format='json-ld')
-
 
     except json.decoder.JSONDecodeError:
         logger.warning("Not a valid JSON document: %s", page)

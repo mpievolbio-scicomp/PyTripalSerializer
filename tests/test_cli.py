@@ -47,7 +47,7 @@ class CLITest(unittest.TestCase):
         g = Graph().parse('graph.ttl')
 
         self.assertEqual(response.exit_code, 0)
-        self.assertEqual(len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]), 248)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
 
     def test_cds_11846_nondefault_output(self):
         """Test parsing a json document and load as graph from specified output file."""
@@ -60,7 +60,7 @@ class CLITest(unittest.TestCase):
         g = Graph().parse('11846.ttl')
 
         self.assertEqual(response.exit_code, 0)
-        self.assertEqual(len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]), 248)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
 
 
 if __name__ == "__main__":

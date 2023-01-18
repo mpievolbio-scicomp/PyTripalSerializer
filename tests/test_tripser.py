@@ -7,12 +7,13 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef, Literal, BNode
+from rdflib import Graph, URIRef, BNode
 
 from tripser.tripser import RecursiveJSONLDParser
 from tripser.tripser import cleanup, get_graph, remove_terms
 
 logging.basicConfig(level=logging.INFO)
+
 
 class TestRecursiveJSONLDParser(unittest.TestCase):
     def setUp(self):
@@ -43,7 +44,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         # There should be 125 terms in this graph.
         self.assertEqual(len(graph), 125)
 
-
     def test_get_graph(self):
         """Test parsing a URL into a graph."""
 
@@ -68,8 +68,8 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
 
         # Can only check non-BNode terms
         self.assertEqual(
-            len([(s,p,o) for (s,p,o) in parser.graph if not (isinstance(s,BNode) or isinstance(o,BNode))]),
-            247)
+            len([(s, p, o) for (s, p, o) in parser.graph if not (isinstance(s, BNode) or isinstance(o, BNode))]), 247
+        )
 
     def test_parse_page_cds(self):
         """Test parsing a CDS with all subclasses."""
@@ -82,8 +82,8 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
 
         self.assertIsInstance(cds_graph, Graph)
         self.assertEqual(
-            len([(s,p,o) for (s,p,o) in cds_graph if not (isinstance(s,BNode) or isinstance(o,BNode))]),
-            253)
+            len([(s, p, o) for (s, p, o) in cds_graph if not (isinstance(s, BNode) or isinstance(o, BNode))]), 253
+        )
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
@@ -118,22 +118,17 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         """Test recursively adding terms to a graph (no members)."""
 
         parser = RecursiveJSONLDParser('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846')
-        g = parser.recursively_add(Graph(),
-                                   ref=URIRef(parser.entry_point))
+        g = parser.recursively_add(Graph(), ref=URIRef(parser.entry_point))
 
         self.assertIsInstance(g, Graph)
 
-        self.assertEqual(
-            len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]),
-            248)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
 
     @unittest.skip("Takes too long.")
     def test_recursively_add_trna(self):
         """Test recursively adding terms to a graph (with members)."""
         parser = RecursiveJSONLDParser('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/')
-        g = parser.recursively_add(Graph(),
-                                   ref=parser.entry_point
-                                   )
+        g = parser.recursively_add(Graph(), ref=parser.entry_point)
 
         logging.debug("# Terms")
         for term in g:
@@ -166,9 +161,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         for term in g:
             logging.debug("\t %s", str(term))
 
-        self.assertEqual(
-            len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]),
-            92)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 92)
 
         # Get number of unique TMRNAs subjects, should be 1.
         self.assertEqual(
@@ -188,7 +181,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         )
 
     def test_construct_and_parse(self):
-        """ Test instantiating and using the class. """
+        """Test instantiating and using the class."""
 
         # Construct the parser.
         parser = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
@@ -205,7 +198,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         self.assertGreater(len(g), 0)
 
     def test_graph_len_consistent(self):
-        """ Test that the length of the queried graph is always the same in consequtive parsings"""
+        """Test that the length of the queried graph is always the same in consequtive parsings"""
 
         parser_1 = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
         parser_1.parse()
