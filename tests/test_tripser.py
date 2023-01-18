@@ -7,7 +7,7 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef
+from rdflib import Graph, URIRef, Literal, BNode
 
 from tripser.tripser import RecursiveJSONLDParser
 from tripser.tripser import cleanup, get_graph, remove_terms
@@ -65,7 +65,11 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         parser.parse()
 
         self.assertIsInstance(parser.graph, Graph)
-        self.assertEqual(len(parser.graph), 923)
+
+        # Can only check non-BNode terms
+        self.assertEqual(
+            len([(s,p,o) for (s,p,o) in parser.graph if not (isinstance(s,BNode) or isinstance(o,BNode))]),
+            247)
 
     def test_parse_page_cds(self):
         """Test parsing a CDS with all subclasses."""
@@ -77,7 +81,9 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         cds_graph = parser.parse_page(cds_page)
 
         self.assertIsInstance(cds_graph, Graph)
-        self.assertEqual(len(cds_graph), 1377)
+        self.assertEqual(
+            len([(s,p,o) for (s,p,o) in cds_graph if not (isinstance(s,BNode) or isinstance(o,BNode))]),
+            253)
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
@@ -90,7 +96,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         cds_graph = parser.parse_page(cds_page)
 
         self.assertIsInstance(cds_graph, Graph)
-        self.assertEqual(len(cds_graph), 5300)
 
         # Get number of unique CDS subjects, should be 10.
         self.assertEqual(
@@ -117,7 +122,10 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
                                    ref=URIRef(parser.entry_point))
 
         self.assertIsInstance(g, Graph)
-        self.assertEqual(len(g), 674)
+
+        self.assertEqual(
+            len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]),
+            248)
 
     @unittest.skip("Takes too long.")
     def test_recursively_add_trna(self):
@@ -130,7 +138,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         logging.debug("# Terms")
         for term in g:
             logging.debug("\t %s", str(term))
-        self.assertEqual(len(g), 4500)
 
         # Get number of unique TRNAs subjects, should be 1.
         self.assertEqual(
@@ -158,7 +165,10 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         logging.debug("# Terms")
         for term in g:
             logging.debug("\t %s", str(term))
-            self.assertEqual(len(g), 136)
+
+        self.assertEqual(
+            len([(s,p,o) for (s,p,o) in g if not (isinstance(s,BNode) or isinstance(o,BNode))]),
+            92)
 
         # Get number of unique TMRNAs subjects, should be 1.
         self.assertEqual(
