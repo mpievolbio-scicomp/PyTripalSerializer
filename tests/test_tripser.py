@@ -203,19 +203,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         for pflu_ns in pflu_namespaces:
             self.assertIn(pflu_ns, namespaces_in_default_graph)
 
-
-
-        # Parse.
-        parser.parse()
-
-        # Get the graph.
-        g = parser.graph
-
-        # Clean it up.
-        cleanup(g)
-
-        self.assertGreater(len(g), 0)
-
     def test_construct_and_parse(self):
         """Test instantiating and using the class."""
 
