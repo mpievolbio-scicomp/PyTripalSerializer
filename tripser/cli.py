@@ -13,13 +13,17 @@ logger.setLevel(logging.INFO)
 @click.command()
 @click.argument('url')
 @click.option('-o', '--out', default='graph.ttl', help='')
-def cli(url, out):
+@click.option('-s', '--serialize_nodes', is_flag=True, default=False, help='Serialize individual nodes.')
+def cli(url, out, serialize_nodes):
     """Main entrypoint."""
     click.echo("pytripalserializer")
     click.echo("=" * len("pytripalserializer"))
     click.echo("Serialize Tripal's JSON-LD API into RDF.")
 
-    parser = tripser.RecursiveJSONLDParser(url)
+    if serialize_nodes:
+        click.echo("serialize_nodes is set to True")
+
+    parser = tripser.RecursiveJSONLDParser(url, serialize_nodes=serialize_nodes)
 
     try:
         parser.parse()

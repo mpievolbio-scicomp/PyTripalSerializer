@@ -4,6 +4,7 @@
 import json
 import logging
 import math
+import copy
 
 import urllib
 import requests
@@ -15,33 +16,75 @@ logger = logging.getLogger(__name__)
 class RecursiveJSONLDParser:
     """:class: This class implements recursive parsing of JSON-LD documents."""
 
-    def __init__(self, entry_point=None):
+    def __init__(self, entry_point=None, graph=None, serialize_nodes=False):
         """Initialize the recursine JSON-LD parser.
 
         :param root: The entry point for parsing.
         :type  root: str | rdflib.URIRef | rdflib.Literal
 
+        :param graph: Set the initial graph. Parsed terms will be inserted into this graph.
+        :type  graph: rdflib.Graph
+
+        :param serialize_nodes: Determines whether parsed documents will be serialized
+        as standalone nodes. Default is False.
+        :type  serialize_nodes: bool
+
         """
 
+        # Init hidden attributes.
         self.__parsed_pages = []
 
-        self.graph = Graph(bind_namespaces='rdflib')
-        self.graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
-        self.graph.bind('edam', Namespace("http://edamontology.org/"))
-        self.graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
-        self.graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
-        self.graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
-        self.graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
-        self.graph.bind("pflutranscript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
-        self.graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
-        self.graph.bind("pflucv", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
-        self.graph.bind("pflucds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
-        self.graph.bind("pflumrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
-        self.graph.bind("pflugene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
-        self.graph.bind("pfluexon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
-        self.graph.bind("pfluorganism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
+        # Init public attributes.
+        self.graph = graph
+        self.serialize_nodes = serialize_nodes
+        self.entry_point = entry_point
 
-        self.entry_point = URIRef(entry_point)
+    @property
+    def serialize_nodes(self):
+        """Get the 'serialize_nodes' flag."""
+        return self.__serialize_nodes
+
+    @serialize_nodes.setter
+    def serialize_nodes(self, value):
+        """Set the 'serialize_nodes' flag."""
+        if value is None:
+            value = False
+        if not isinstance(value, bool):
+            raise TypeError("Parameter 'serialize_nodes' must be a bool, got {}.".format(type(value)))
+        self.__serialize_nodes = value
+
+    @property
+    def graph(self):
+        """Access the graph of the parser."""
+        return self.__graph
+
+    @graph.setter
+    def graph(self, value):
+        """Set the graph attribute"""
+        if value is None:
+            value = Graph(bind_namespaces='rdflib')
+        if not isinstance(value, Graph):
+            raise TypeError("Expected instance of rdflib.Graph, received {}".format(type(value)))
+        else:
+            # Copy construct to leave passed graph as is.
+            self.__graph = copy.deepcopy(value)
+
+        self.__graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
+        self.__graph.bind('edam', Namespace("http://edamontology.org/"))
+        self.__graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
+        self.__graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
+        self.__graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
+        self.__graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
+        self.__graph.bind(
+            "pflutranscript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
+        )
+        self.__graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
+        self.__graph.bind("pflucv", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
+        self.__graph.bind("pflucds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
+        self.__graph.bind("pflumrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
+        self.__graph.bind("pflugene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
+        self.__graph.bind("pfluexon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
+        self.__graph.bind("pfluorganism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
 
     @property
     def parsed_pages(self):
@@ -52,22 +95,17 @@ class RecursiveJSONLDParser:
         raise RuntimeError("parsed_pages is a read-only property.")
 
     @property
-    def graph(self):
-        return self.__graph
-
-    @graph.setter
-    def graph(self, value):
-        if isinstance(value, Graph):
-            self.__graph = value
-        else:
-            raise TypeError("{} is not a rdflib.Graph instance.".format(value))
-
-    @property
     def entry_point(self):
         return self.__entry_point
 
     @entry_point.setter
     def entry_point(self, value):
+
+        if value is None:
+            logging.warning("No entry point set. Set the entry point before parsing.")
+            self.__entry_point = None
+            return
+
         if isinstance(value, str):
             value = URIRef(value)
 
@@ -77,6 +115,11 @@ class RecursiveJSONLDParser:
             self.__entry_point = value
 
     def parse(self):
+        if self.entry_point is None:
+            self.entry_point = None
+            return
+
+        # else: parse
         self.graph += self.parse_page(self.entry_point)
 
     def parse_page(self, page):
@@ -95,7 +138,7 @@ class RecursiveJSONLDParser:
 
         logger.debug("parse_page(page=%s)", str(page))
 
-        grph = get_graph(page)
+        grph = get_graph(page, self.serialize_nodes)
 
         logger.debug("# Terms")
         for term in grph:
@@ -262,7 +305,7 @@ def remove_terms(grph, terms):
     logger.debug("Removed %d terms matching triple pattern (%s, %s, %s).", count, *terms)
 
 
-def get_graph(page):
+def get_graph(page, serialize=False):
     """Workhorse function to download the json document and parse into the graph to be returned.
 
     :param page: The URL of the json-ld document to download and parse.
@@ -292,9 +335,15 @@ def get_graph(page):
     except requests.exceptions.JSONDecodeError:
         logger.warning("Not a valid JSON document: %s", page)
 
-    except BaseException:
+    except Exception as e:
         logger.error("Exception thrown while parsing %s.", page)
-        raise
+        raise e
 
     logger.debug("Parsed %d terms.", len(grph))
+
+    if serialize:
+        ofname = page.split("://")[-1].replace("/", "__") + ".ttl"
+        logger.info("Writing %s to %s.", page, ofname)
+        grph.serialize(ofname)
+
     return grph

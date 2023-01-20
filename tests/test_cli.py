@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 """:module: test_cli testing module."""
 
+
+import glob
 import os
 import shutil
+import sys
 import unittest
 
 from click.testing import CliRunner
@@ -35,18 +38,30 @@ class CLITest(unittest.TestCase):
         """Test the CLI with no parameters envoked."""
 
         response = self.runner.invoke(cli)
-
         self.assertEqual(response.exit_code, 2)
+
+    @unittest.skipIf(sys.platform.startswith('win'), "Do not run on Windows.")
+    def test_cds_11846_serialize_nodes(self):
+        """Test parsing a json document with node serialization."""
+
+        response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846', '-s'])
+        self.assertEqual(response.exit_code, 0)
+
+        ttls = glob.glob("*.ttl")
+        self._thrashcan += ttls
+
+        self.assertGreater(len(ttls), 50)
 
     def test_cds_11846_default_output(self):
         """Test parsing a json document and load as graph from default output file."""
 
-        self._thrashcan.append('graph.ttl')
+        # self._thrashcan.append('graph.ttl')
 
         response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846'])
+        self.assertEqual(response.exit_code, 0)
+
         g = Graph().parse('graph.ttl')
 
-        self.assertEqual(response.exit_code, 0)
         self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
 
     def test_cds_11846_nondefault_output(self):
@@ -57,9 +72,10 @@ class CLITest(unittest.TestCase):
         response = self.runner.invoke(
             cli, '--out 11846.ttl http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846'
         )
+        self.assertEqual(response.exit_code, 0)
+
         g = Graph().parse('11846.ttl')
 
-        self.assertEqual(response.exit_code, 0)
         self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
 
 
