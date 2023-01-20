@@ -15,7 +15,6 @@ from tripser.tripser import cleanup, get_graph, remove_terms
 logging.basicConfig(level=logging.INFO)
 
 
-
 class TestRecursiveJSONLDParser(unittest.TestCase):
     def setUp(self):
         """Set up the test case."""
@@ -87,27 +86,29 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         )
 
     def test_construction_default(self):
-        """ Test the default constructor."""
+        """Test the default constructor."""
         parser = RecursiveJSONLDParser()
         self.assertIsNone(parser.entry_point)
         self.assertFalse(parser.serialize_nodes)
         self.assertIsInstance(parser.graph, Graph)
 
     def test_construction_with_graph(self):
-        """ Test passing an existing graph to the constructor."""
+        """Test passing an existing graph to the constructor."""
 
         parser = RecursiveJSONLDParser(graph=Graph())
 
-        self.assertEqual(len([ns for ns in parser.graph.namespace_manager.namespaces()]), 19 )
+        self.assertEqual(len([ns for ns in parser.graph.namespace_manager.namespaces()]), 19)
+
     def test_construction_and_parsing_with_graph(self):
-        """ Test passing an existing graph to the constructor. Parsed terms
+        """Test passing an existing graph to the constructor. Parsed terms
         should be added to the passed graph."""
 
         g = Graph().parse('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA')
         self.assertEqual(len(g), 9)
 
-        parser = RecursiveJSONLDParser(entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850',
-                                       graph=g)
+        parser = RecursiveJSONLDParser(
+            entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850', graph=g
+        )
 
         # Parse into g.
         parser.parse()
@@ -116,8 +117,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
 
         for term in g:
             self.assertIn(term, parser.graph)
-
-
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
@@ -215,7 +214,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         )
 
     def test_namespaces(self):
-        """Test that rdflib namespaces are bound to the graph attribute. """
+        """Test that rdflib namespaces are bound to the graph attribute."""
 
         # Construct the parser.
         parser = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/'))
@@ -231,7 +230,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
             URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/'),
             URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/'),
             URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/')
+            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/'),
         ]
 
         for pflu_ns in pflu_namespaces:
@@ -270,16 +269,19 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         self.assertEqual(len(g_1), len(g_2))
 
     def test_get_graph_serialize(self):
-        """Test get_graph() with serialization """
+        """Test get_graph() with serialization"""
 
-        json_url = ('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/13087/database+cross+reference')
-        self.__thrashcan.append("pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl")
+        json_url = 'http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/13087/database+cross+reference'
+        self.__thrashcan.append(
+            "pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl"
+        )
         g = get_graph(json_url, True)
 
         self.assertIsInstance(g, Graph)
         self.assertEqual(len(g), 97)
-        self.assertIn('pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl', os.listdir())
-
+        self.assertIn(
+            'pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl', os.listdir()
+        )
 
     def test_get_graph_corrupt_json(self):
         """Test get_graph() for a corrupt json file."""
