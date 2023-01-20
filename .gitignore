@@ -131,3 +131,5 @@ dmypy.json
 
 # Various files.
 README.html
+.idea/
+playground/
