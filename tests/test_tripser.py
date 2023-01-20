@@ -7,7 +7,7 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef, BNode, Namespace
+from rdflib import Graph, URIRef, BNode
 
 from tripser.tripser import RecursiveJSONLDParser
 from tripser.tripser import cleanup, get_graph, remove_terms
