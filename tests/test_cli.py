@@ -3,6 +3,7 @@
 
 import os
 import shutil
+import glob
 import unittest
 
 from click.testing import CliRunner
@@ -38,10 +39,22 @@ class CLITest(unittest.TestCase):
 
         self.assertEqual(response.exit_code, 2)
 
+    def test_cds_11846_serialize_nodes(self):
+        """Test parsing a json document with node serialization."""
+
+        self._thrashcan.append('graph.ttl')
+
+        response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846', '-s'])
+
+        ttls = glob.glob("*.ttl")
+        self._thrashcan += ttls
+
+        self.assertEqual(len(ttls), 63)
+
     def test_cds_11846_default_output(self):
         """Test parsing a json document and load as graph from default output file."""
 
-        self._thrashcan.append('graph.ttl')
+        # self._thrashcan.append('graph.ttl')
 
         response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846'])
         g = Graph().parse('graph.ttl')

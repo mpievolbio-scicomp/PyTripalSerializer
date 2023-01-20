@@ -15,6 +15,7 @@ from tripser.tripser import cleanup, get_graph, remove_terms
 logging.basicConfig(level=logging.INFO)
 
 
+
 class TestRecursiveJSONLDParser(unittest.TestCase):
     def setUp(self):
         """Set up the test case."""
@@ -84,6 +85,19 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         self.assertEqual(
             len([(s, p, o) for (s, p, o) in cds_graph if not (isinstance(s, BNode) or isinstance(o, BNode))]), 253
         )
+
+    def test_construction_default(self):
+        """ Test the default constructor."""
+        parser = RecursiveJSONLDParser()
+        self.assertIsNone(parser.entry_point)
+        self.assertFalse(parser.serialize_nodes)
+        self.assertIsInstance(parser.graph, Graph)
+
+    def test_construction_with_graph(self):
+        """ Test passing an existing graph to the constructor. Parsed terms
+        should be added to the passed graph."""
+
+        raise NotImplementedError
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
@@ -234,6 +248,18 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         cleanup(g_2)
 
         self.assertEqual(len(g_1), len(g_2))
+
+    def test_get_graph_serialize(self):
+        """Test get_graph() with serialization """
+
+        json_url = ('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/13087/database+cross+reference')
+        self.__thrashcan.append("pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl")
+        g = get_graph(json_url, True)
+
+        self.assertIsInstance(g, Graph)
+        self.assertEqual(len(g), 97)
+        self.assertIn('pflu.evolbio.mpg.de__web-services__content__v0.1__CDS__13087__database+cross+reference.ttl', os.listdir())
+
 
     def test_get_graph_corrupt_json(self):
         """Test get_graph() for a corrupt json file."""
