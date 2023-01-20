@@ -94,10 +94,30 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         self.assertIsInstance(parser.graph, Graph)
 
     def test_construction_with_graph(self):
+        """ Test passing an existing graph to the constructor."""
+
+        parser = RecursiveJSONLDParser(graph=Graph())
+
+        self.assertEqual(len([ns for ns in parser.graph.namespace_manager.namespaces()]), 19 )
+    def test_construction_and_parsing_with_graph(self):
         """ Test passing an existing graph to the constructor. Parsed terms
         should be added to the passed graph."""
 
-        raise NotImplementedError
+        g = Graph().parse('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA')
+        self.assertEqual(len(g), 9)
+
+        parser = RecursiveJSONLDParser(entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850',
+                                       graph=g)
+
+        # Parse into g.
+        parser.parse()
+        self.assertGreater(len(parser.graph), 9)
+        self.assertEqual(len(g), 9)
+
+        for term in g:
+            self.assertIn(term, parser.graph)
+
+
 
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
