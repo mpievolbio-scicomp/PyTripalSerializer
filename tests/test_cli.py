@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 """:module: test_cli testing module."""
 
+
+import glob
 import os
 import shutil
-import glob
+import sys
 import unittest
 
 from click.testing import CliRunner
@@ -38,9 +40,9 @@ class CLITest(unittest.TestCase):
         response = self.runner.invoke(cli)
         self.assertEqual(response.exit_code, 2)
 
+    @unittest.skipIf(sys.platform.startswith('win'), "Do not run on Windows.")
     def test_cds_11846_serialize_nodes(self):
         """Test parsing a json document with node serialization."""
-
 
         response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846', '-s'])
         self.assertEqual(response.exit_code, 0)
