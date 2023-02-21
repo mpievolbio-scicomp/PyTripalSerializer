@@ -72,20 +72,52 @@ class RecursiveJSONLDParser:
 
         self.__graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
         self.__graph.bind('edam', Namespace("http://edamontology.org/"))
+        self.__graph.bind('schema', Namespace("https://schema.org/"))
         self.__graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
         self.__graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
         self.__graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
         self.__graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
         self.__graph.bind(
-            "pflutranscript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
+            "transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
         )
         self.__graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
-        self.__graph.bind("pflucv", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
-        self.__graph.bind("pflucds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
-        self.__graph.bind("pflumrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
-        self.__graph.bind("pflugene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
-        self.__graph.bind("pfluexon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
-        self.__graph.bind("pfluorganism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
+        self.__graph.bind("tripal3", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
+
+        self.__graph.bind("analysis", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Analysis/"))
+        self.__graph.bind("binding_site", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Binding_Site/"))
+        self.__graph.bind("biological_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region/"))
+        self.__graph.bind("cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
+        self.__graph.bind("exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
+        self.__graph.bind("gene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
+        self.__graph.bind("genetic_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Map/"))
+        self.__graph.bind("genetic_marker", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Marker/"))
+        self.__graph.bind("genome_annotation", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Annotation/"))
+        self.__graph.bind("genome_assembly", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Assembly/"))
+        self.__graph.bind("germplasm_accession", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Germplasm_Accession/"))
+        self.__graph.bind("heritable_phenotypic_marker", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Heritable_Phenotypic_Marker/"))
+        self.__graph.bind("mrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
+        self.__graph.bind("ncrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/ncRNA/"))
+        self.__graph.bind("organism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
+        self.__graph.bind("phylogenetic_tree", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Phylogenetic_Tree/"))
+        self.__graph.bind("physical_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Physical_Map/"))
+        self.__graph.bind("protein_binding_site", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Protein_Binding_Site/"))
+        self.__graph.bind("pseudogene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogene/"))
+        self.__graph.bind("pseudogenic_cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_CDS/"))
+        self.__graph.bind("pseudogenic_exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Exon/"))
+        self.__graph.bind("pseudogenic_transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Transcript/"))
+        self.__graph.bind("publication", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Publication/"))
+        self.__graph.bind("qtl", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/QTL/"))
+        self.__graph.bind("regulatory_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Regulatory_Region/"))
+        self.__graph.bind("repeat_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Repeat_Region/"))
+        self.__graph.bind("rrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/RRNA/"))
+        self.__graph.bind("sequence_difference", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Difference/"))
+        self.__graph.bind("sequence_variant", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Variant/"))
+        self.__graph.bind("signal_peptide", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Signal_Peptide/"))
+        self.__graph.bind("stem_loop", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Stem_Loop/"))
+        self.__graph.bind("tmrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TmRNA/"))
+        self.__graph.bind("trna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/"))
+        self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
+
 
     @property
     def parsed_pages(self):
@@ -156,6 +188,10 @@ class RecursiveJSONLDParser:
         if task not in self.__parsed_pages:
             self.graph += gloc
             self.__parsed_pages.append(task)
+
+        # Only if we are not paginating yet
+        if len(task.split("&")) > 1:
+            return
 
         # Get total item count.
         members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
