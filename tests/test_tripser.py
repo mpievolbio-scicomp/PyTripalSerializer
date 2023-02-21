@@ -105,11 +105,11 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
             self.assertIn(term, parser.graph)
 
     def test_parse_loop(self):
-        """ Test the main parsing loop."""
+        """Test the main parsing loop."""
 
-        parser = RecursiveJSONLDParser(graph=Graph(),
-            entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850'
-                                       )
+        parser = RecursiveJSONLDParser(
+            graph=Graph(), entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850'
+        )
 
         parser.parse()
 

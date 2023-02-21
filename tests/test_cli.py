@@ -48,7 +48,6 @@ class CLITest(unittest.TestCase):
         self.assertIn('graph.ttl', os.listdir('.'))
         self._thrashcan.append('graph.ttl')
 
-
     def test_cds_11846_default_output(self):
         """Test parsing a json document and load as graph from default output file."""
 
