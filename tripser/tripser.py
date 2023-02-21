@@ -1,14 +1,14 @@
 """:module: tripser - main module."""
 
 
+import copy
 import json
 import logging
 import math
-import copy
-
 import urllib
+
 import requests
-from rdflib import Graph, URIRef, Namespace
+from rdflib import Graph, Namespace, URIRef
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

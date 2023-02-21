@@ -8,7 +8,7 @@ import sys
 import unittest
 
 from click.testing import CliRunner
-from rdflib import Graph, BNode
+from rdflib import BNode, Graph
 
 from tripser.cli import cli
 

@@ -7,10 +7,9 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef, BNode
+from rdflib import BNode, Graph, URIRef
 
-from tripser.tripser import RecursiveJSONLDParser
-from tripser.tripser import cleanup, get_graph, remove_terms
+from tripser.tripser import RecursiveJSONLDParser, cleanup, get_graph, remove_terms
 
 logging.basicConfig(level=logging.INFO)
 
