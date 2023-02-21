@@ -163,7 +163,10 @@ class RecursiveJSONLDParser:
             # Add items.
             self.recursively_add(task)
             no_complete += 1
-            logging.info("%d tasks complete, %d tasks to do", no_complete, no_tasks-1)
+
+            # Report if multiple of 100 tasks complete.
+            if no_complete % 100 == 0:
+                logger.info("%d tasks complete, %d tasks to do", no_complete, no_tasks-1)
 
 
     def recursively_add(self, task):
@@ -212,7 +215,7 @@ class RecursiveJSONLDParser:
             if nom == 0:
                 return
 
-            logger.info("Found %d members in %s.", nom, gloc)
+            logger.debug("Found %d members in %s.", nom, gloc)
 
             # We'll apply pagination with 25 items per page.
             limit = 25
