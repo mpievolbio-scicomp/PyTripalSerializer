@@ -46,11 +46,9 @@ class CLITest(unittest.TestCase):
 
         response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846', '-s'])
         self.assertEqual(response.exit_code, 0)
+        self.assertIn('graph.ttl', os.listdir('.'))
+        self._thrashcan.append('graph.ttl')
 
-        ttls = glob.glob("*.ttl")
-        self._thrashcan += ttls
-
-        self.assertGreater(len(ttls), 50)
 
     def test_cds_11846_default_output(self):
         """Test parsing a json document and load as graph from default output file."""
