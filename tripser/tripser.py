@@ -33,6 +33,7 @@ class RecursiveJSONLDParser:
 
         # Init hidden attributes.
         self.__parsed_pages = []
+        self.__tasks = []
 
         # Init public attributes.
         self.graph = graph
@@ -113,50 +114,20 @@ class RecursiveJSONLDParser:
             raise TypeError("{} is neither a rdflib.URIRef instance nor str.".format(value))
         else:
             self.__entry_point = value
+            self.__tasks.append(value)
 
     def parse(self):
-        if self.entry_point is None:
-            self.entry_point = None
-            return
 
-        # else: parse
-        self.graph += self.parse_page(self.entry_point)
+        while True:
+            if len(self.__tasks) == 0:
+                return
 
-    def parse_page(self, page):
-        """
-        This function will attempt to get the json-ld blob from the passed page (URL) and pass it on to Graph.parse().
-        It then calls the `recursively_add` function on the local scope's graph and for each member's URI.
+            task = self.__tasks.pop(0)
 
-        The constructed Graph instance is returned.
+            # Add items.
+            self.recursively_add(task)
 
-        :param page: URL of the json-ld document
-        :type  page: str
-
-        :return: A Graph instance constructed from the downloaded json document.
-        :rtype: Graph
-        """
-
-        logger.debug("parse_page(page=%s)", str(page))
-
-        grph = get_graph(page, self.serialize_nodes)
-
-        logger.debug("# Terms")
-        for term in grph:
-            logger.debug("\t %s", str(term))
-            subj, pred, obj = term
-            if str(obj) in self.__parsed_pages:
-                logger.debug("Already parsed or parsing: %s", str(obj))
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
-                continue
-            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
-                self.__parsed_pages.append(str(obj))
-                logger.debug("Descending into 'recursively_add()'")
-                grph = self.recursively_add(grph, obj)
-
-        return grph
-
-    def recursively_add_serial(self, g, ref):
+    def recursively_add(self, task):
         """
         Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
         subgraph with the same graph `g`. Serial implementation
@@ -167,105 +138,49 @@ class RecursiveJSONLDParser:
         :param ref: The URL of the document to (recursively) parse into the graph
         :type  ref: URIRef | str
         """
-        logger.debug("recursively_add(g=%s, ref=%s)", str(g), str(ref))
-        # First parse the document into a local g.
-        # gloc = get_graph(ref)
-        gloc = self.parse_page(ref)
+        gloc = get_graph(task)
+
+        for term in gloc:
+            logger.debug("\t %s", str(term))
+            subj, pred, obj = term
+            if str(obj) in self.__parsed_pages:
+                logger.debug("Already parsed or parsing: %s", str(obj))
+                continue
+            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
+                continue
+            if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
+                continue
+            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+                self.__tasks.append(str(obj))
+
+        if task not in self.__parsed_pages:
+            self.graph += gloc
+            self.__parsed_pages.append(task)
 
         # Get total item count.
-        number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+        members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+
+        logging.debug("Number of members: %d", len(members))
 
         # If there are any member, parse them recursively.
-        if number_of_members != []:
+        if members != []:
             # Convert to python type.
-            nom = number_of_members[0].toPython()
+            nom = members[0].toPython()
             if nom == 0:
-                return g + gloc
+                return
 
-            logger.info("Found %d members in %s.", nom, ref.toPython())
+            logger.info("Found %d members in %s.", nom, gloc)
 
             # We'll apply pagination with 25 items per page.
             limit = 25
             pages = range(1, math.ceil(nom / limit) + 1)
 
             # Get each page's URL.
-            pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
+            pages = [task + "?limit={}&page={}".format(limit, page) for page in pages]
             logger.debug("# PAGES")
             for page in pages:
                 logger.debug("\t %s", page)
-
-            igraphs = (self.parse_page(page) for page in pages)
-
-            logger.info("Parsing and merging subgraphs in %s.", ref)
-            for grph in igraphs:
-                gloc = gloc + grph
-
-        return g + gloc
-
-    def recursively_add(self, g, ref):
-        """
-        Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
-        subgraph with the same graph `g`.
-
-        :param g: The graph into which all terms are to be inserted.
-        :type  g: rdflib.Graph
-
-        :param ref: The URL of the document to (recursively) parse into the graph
-        :type  ref: URIRef | str
-        """
-
-        return self.recursively_add_serial(g, ref)
-
-
-#         # First parse the document into a local g.
-#         gloc = get_graph(ref)
-#         # gloc = Graph().parse(ref)
-
-#         # Get total item count.
-#         number_of_members = [ti for ti in gloc.objects(
-#                                 predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
-
-#         # If there are any member, parse them recursively.
-#         if number_of_members != []:
-#             # Convert to python type.
-#             nom = number_of_members[0].toPython()
-#             if nom == 0:
-#                 return g + gloc
-
-#             logger.info("Found %d members in %s.", nom, ref.toPython())
-
-#             # We'll apply pagination with 25 items per page.
-#             limit = 25
-#             pages = range(1, math.ceil(nom / limit) + 1)
-
-#             # Get each page's URL.
-#             pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
-
-#             # Get pool of workers and  distribute tasks.
-#             number_of_tasks = len(pages)
-#             number_of_processes = min(multiprocess.cpu_count(), number_of_tasks)
-#             chunk_size = number_of_tasks // number_of_processes
-
-#             logger.info("### MultiProcessing setup")
-#             logger.info("### Number of tasks:\t\t%d", number_of_tasks)
-#             logger.info("### Number of processes:\t%d", number_of_processes)
-#             logger.info("### Chunk size:\t\t%d", chunk_size)
-
-#             with ProcessPool(nodes=number_of_processes) as pool:
-#                 logger.debug("Setup pool %s.", str(pool))
-#                 list_of_graphs = pool.amap(parse_page, pages, chunksize=chunk_size).get()
-
-#                 pool.close()
-#                 pool.join()
-
-#             logger.info("Done parsing subgraphs in %s.", ref)
-
-#             logger.info("Merging subgraphs in %s.", ref)
-#             for grph in list_of_graphs:
-#                 gloc = gloc + grph
-
-#         return g + gloc
-
+                self.__tasks.append(page)
 
 def cleanup(grph):
     """

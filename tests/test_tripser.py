@@ -118,6 +118,15 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         for term in g:
             self.assertIn(term, parser.graph)
 
+    def test_parse_loop():
+        """ Test the main parsing loop."""
+
+        parser = RecursiveJSONLDParser(graph=Graph(),
+            entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850'
+                                       )
+
+        parser.parse()
+
     @unittest.skip("Takes too long.")
     def test_parse_page(self):
         """Test parsing a URL with members."""
