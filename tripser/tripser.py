@@ -11,6 +11,7 @@ import requests
 from rdflib import Graph, URIRef, Namespace
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class RecursiveJSONLDParser:
@@ -150,14 +151,20 @@ class RecursiveJSONLDParser:
 
     def parse(self):
 
+        no_complete = 0
+
         while True:
-            if len(self.__tasks) == 0:
+            no_tasks = len(self.__tasks)
+            if no_tasks == 0:
                 return
 
             task = self.__tasks.pop(0)
 
             # Add items.
             self.recursively_add(task)
+            no_complete += 1
+            logging.info("%d tasks complete, %d tasks to do", no_complete, no_tasks-1)
+
 
     def recursively_add(self, task):
         """
