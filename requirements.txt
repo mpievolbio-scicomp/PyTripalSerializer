@@ -2,3 +2,5 @@ requests
 rdflib
 click
 pathos
+rq
+redis
