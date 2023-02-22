@@ -2,14 +2,13 @@
 """:module: test_cli testing module."""
 
 
-import glob
 import os
 import shutil
 import sys
 import unittest
 
 from click.testing import CliRunner
-from rdflib import Graph, BNode
+from rdflib import BNode, Graph
 
 from tripser.cli import cli
 
@@ -46,11 +45,8 @@ class CLITest(unittest.TestCase):
 
         response = self.runner.invoke(cli, ['http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846', '-s'])
         self.assertEqual(response.exit_code, 0)
-
-        ttls = glob.glob("*.ttl")
-        self._thrashcan += ttls
-
-        self.assertGreater(len(ttls), 50)
+        self.assertIn('graph.ttl', os.listdir('.'))
+        self._thrashcan.append('graph.ttl')
 
     def test_cds_11846_default_output(self):
         """Test parsing a json document and load as graph from default output file."""

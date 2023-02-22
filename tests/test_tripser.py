@@ -7,10 +7,9 @@ import os
 import shutil
 import unittest
 
-from rdflib import Graph, URIRef, BNode
+from rdflib import BNode, Graph, URIRef
 
-from tripser.tripser import RecursiveJSONLDParser
-from tripser.tripser import cleanup, get_graph, remove_terms
+from tripser.tripser import RecursiveJSONLDParser, cleanup, get_graph, remove_terms
 
 logging.basicConfig(level=logging.INFO)
 
@@ -71,20 +70,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
             len([(s, p, o) for (s, p, o) in parser.graph if not (isinstance(s, BNode) or isinstance(o, BNode))]), 247
         )
 
-    def test_parse_page_cds(self):
-        """Test parsing a CDS with all subclasses."""
-
-        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS?page=1&limit=1"
-
-        parser = RecursiveJSONLDParser(cds_page)
-
-        cds_graph = parser.parse_page(cds_page)
-
-        self.assertIsInstance(cds_graph, Graph)
-        self.assertEqual(
-            len([(s, p, o) for (s, p, o) in cds_graph if not (isinstance(s, BNode) or isinstance(o, BNode))]), 253
-        )
-
     def test_construction_default(self):
         """Test the default constructor."""
         parser = RecursiveJSONLDParser()
@@ -97,7 +82,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
 
         parser = RecursiveJSONLDParser(graph=Graph())
 
-        self.assertEqual(len([ns for ns in parser.graph.namespace_manager.namespaces()]), 19)
+        self.assertEqual(len([ns for ns in parser.graph.namespace_manager.namespaces()]), 48)
 
     def test_construction_and_parsing_with_graph(self):
         """Test passing an existing graph to the constructor. Parsed terms
@@ -118,51 +103,40 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         for term in g:
             self.assertIn(term, parser.graph)
 
-    @unittest.skip("Takes too long.")
-    def test_parse_page(self):
-        """Test parsing a URL with members."""
+    def test_parse_loop(self):
+        """Test the main parsing loop."""
 
-        cds_page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS?page=3&limit=10"
-
-        parser = RecursiveJSONLDParser(cds_page)
-
-        cds_graph = parser.parse_page(cds_page)
-
-        self.assertIsInstance(cds_graph, Graph)
-
-        # Get number of unique CDS subjects, should be 10.
-        self.assertEqual(
-            len(
-                [
-                    tr
-                    for tr in cds_graph.triples(
-                        (
-                            None,
-                            URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-                            URIRef('http://www.sequenceontology.org/browser/current_svn/term/SO:0000316'),
-                        )
-                    )
-                ]
-            ),
-            10,
+        parser = RecursiveJSONLDParser(
+            graph=Graph(), entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850'
         )
+
+        parser.parse()
+
+        # Get the graph.
+        g = parser.graph
+
+        # Clean it up.
+        cleanup(g)
+
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 247)
 
     def test_recursively_add_feature(self):
         """Test recursively adding terms to a graph (no members)."""
 
         parser = RecursiveJSONLDParser('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846')
-        g = parser.recursively_add(Graph(), ref=URIRef(parser.entry_point))
+        parser.recursively_add(task=URIRef(parser.entry_point))
 
-        self.assertIsInstance(g, Graph)
+        g = parser.graph
 
-        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 248)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 42)
 
     @unittest.skip("Takes too long.")
     def test_recursively_add_trna(self):
         """Test recursively adding terms to a graph (with members)."""
         parser = RecursiveJSONLDParser('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/')
-        g = parser.recursively_add(Graph(), ref=parser.entry_point)
+        parser.recursively_add(task=parser.entry_point)
 
+        g = parser.graph
         logging.debug("# Terms")
         for term in g:
             logging.debug("\t %s", str(term))
@@ -188,13 +162,11 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         """Test recursively adding terms to a graph (with members)."""
 
         parser = RecursiveJSONLDParser(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/TMRNA'))
-        g = parser.recursively_add(Graph(), ref=parser.entry_point)
+        parser.recursively_add(task=parser.entry_point)
 
-        logging.debug("# Terms")
-        for term in g:
-            logging.debug("\t %s", str(term))
+        g = parser.graph
 
-        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 92)
+        self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 9)
 
         # Get number of unique TMRNAs subjects, should be 1.
         self.assertEqual(
@@ -223,14 +195,42 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
 
         # Check that pflu namespaces are present.
         pflu_namespaces = [
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Analysis/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Binding_Site/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Map/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Marker/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Annotation/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Assembly/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Germplasm_Accession/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Heritable_Phenotypic_Marker/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/ncRNA/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Phylogenetic_Tree/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Physical_Map/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Protein_Binding_Site/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogene/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_CDS/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Exon/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Transcript/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Publication/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/QTL/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Regulatory_Region/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Repeat_Region/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/RRNA/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Difference/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Variant/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Signal_Peptide/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Stem_Loop/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TmRNA/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/"),
+            URIRef("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"),
             URIRef('http://pflu.evolbio.mpg.de/cv/lookup/local/'),
             URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/'),
-            URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/'),
         ]
 
         for pflu_ns in pflu_namespaces:
@@ -300,16 +300,6 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region?page=781&limit=25"
 
         g = get_graph(page)
-
-        self.assertIsInstance(g, Graph)
-        self.assertEqual(len(g), 5)
-
-    def test_parse_page_no_members(self):
-        page = "http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region?page=781&limit=25"
-
-        parser = RecursiveJSONLDParser(page)
-
-        g = parser.parse_page(page)
 
         self.assertIsInstance(g, Graph)
         self.assertEqual(len(g), 5)

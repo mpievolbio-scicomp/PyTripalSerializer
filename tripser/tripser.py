@@ -1,16 +1,17 @@
 """:module: tripser - main module."""
 
 
+import copy
 import json
 import logging
 import math
-import copy
-
 import urllib
+
 import requests
-from rdflib import Graph, URIRef, Namespace
+from rdflib import Graph, Namespace, URIRef
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class RecursiveJSONLDParser:
@@ -33,6 +34,7 @@ class RecursiveJSONLDParser:
 
         # Init hidden attributes.
         self.__parsed_pages = []
+        self.__tasks = []
 
         # Init public attributes.
         self.graph = graph
@@ -71,20 +73,90 @@ class RecursiveJSONLDParser:
 
         self.__graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
         self.__graph.bind('edam', Namespace("http://edamontology.org/"))
+        self.__graph.bind('schema', Namespace("https://schema.org/"))
         self.__graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
         self.__graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
         self.__graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
         self.__graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
-        self.__graph.bind(
-            "pflutranscript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
-        )
+        self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
         self.__graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
-        self.__graph.bind("pflucv", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
-        self.__graph.bind("pflucds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
-        self.__graph.bind("pflumrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
-        self.__graph.bind("pflugene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
-        self.__graph.bind("pfluexon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
-        self.__graph.bind("pfluorganism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
+        self.__graph.bind("tripal3", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
+
+        self.__graph.bind("analysis", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Analysis/"))
+        self.__graph.bind(
+            "binding_site", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Binding_Site/")
+        )
+        self.__graph.bind(
+            "biological_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region/")
+        )
+        self.__graph.bind("cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
+        self.__graph.bind("exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
+        self.__graph.bind("gene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
+        self.__graph.bind("genetic_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Map/"))
+        self.__graph.bind(
+            "genetic_marker", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Marker/")
+        )
+        self.__graph.bind(
+            "genome_annotation", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Annotation/")
+        )
+        self.__graph.bind(
+            "genome_assembly", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Assembly/")
+        )
+        self.__graph.bind(
+            "germplasm_accession",
+            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Germplasm_Accession/"),
+        )
+        self.__graph.bind(
+            "heritable_phenotypic_marker",
+            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Heritable_Phenotypic_Marker/"),
+        )
+        self.__graph.bind("mrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
+        self.__graph.bind("ncrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/ncRNA/"))
+        self.__graph.bind("organism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
+        self.__graph.bind(
+            "phylogenetic_tree", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Phylogenetic_Tree/")
+        )
+        self.__graph.bind(
+            "physical_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Physical_Map/")
+        )
+        self.__graph.bind(
+            "protein_binding_site",
+            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Protein_Binding_Site/"),
+        )
+        self.__graph.bind("pseudogene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogene/"))
+        self.__graph.bind(
+            "pseudogenic_cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_CDS/")
+        )
+        self.__graph.bind(
+            "pseudogenic_exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Exon/")
+        )
+        self.__graph.bind(
+            "pseudogenic_transcript",
+            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Transcript/"),
+        )
+        self.__graph.bind("publication", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Publication/"))
+        self.__graph.bind("qtl", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/QTL/"))
+        self.__graph.bind(
+            "regulatory_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Regulatory_Region/")
+        )
+        self.__graph.bind(
+            "repeat_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Repeat_Region/")
+        )
+        self.__graph.bind("rrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/RRNA/"))
+        self.__graph.bind(
+            "sequence_difference",
+            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Difference/"),
+        )
+        self.__graph.bind(
+            "sequence_variant", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Variant/")
+        )
+        self.__graph.bind(
+            "signal_peptide", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Signal_Peptide/")
+        )
+        self.__graph.bind("stem_loop", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Stem_Loop/"))
+        self.__graph.bind("tmrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TmRNA/"))
+        self.__graph.bind("trna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/"))
+        self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
 
     @property
     def parsed_pages(self):
@@ -113,50 +185,42 @@ class RecursiveJSONLDParser:
             raise TypeError("{} is neither a rdflib.URIRef instance nor str.".format(value))
         else:
             self.__entry_point = value
+            self.__tasks.append(value)
 
     def parse(self):
-        if self.entry_point is None:
-            self.entry_point = None
-            return
-
-        # else: parse
-        self.graph += self.parse_page(self.entry_point)
-
-    def parse_page(self, page):
-        """
-        This function will attempt to get the json-ld blob from the passed page (URL) and pass it on to Graph.parse().
-        It then calls the `recursively_add` function on the local scope's graph and for each member's URI.
-
-        The constructed Graph instance is returned.
-
-        :param page: URL of the json-ld document
-        :type  page: str
-
-        :return: A Graph instance constructed from the downloaded json document.
-        :rtype: Graph
+        """ Start the parsing loop. In each loop, the first task is processed (parsed) and
+        resulting tasks from object URIs are appended to the task queue.
         """
 
-        logger.debug("parse_page(page=%s)", str(page))
+        # Number of complete tasks.
+        no_complete = 0
 
-        grph = get_graph(page, self.serialize_nodes)
+        # Start loop
+        while True:
+            no_tasks = len(self.__tasks)
+            if no_tasks == 0:
+                return
 
-        logger.debug("# Terms")
-        for term in grph:
-            logger.debug("\t %s", str(term))
-            subj, pred, obj = term
-            if str(obj) in self.__parsed_pages:
-                logger.debug("Already parsed or parsing: %s", str(obj))
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
-                continue
-            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
-                self.__parsed_pages.append(str(obj))
-                logger.debug("Descending into 'recursively_add()'")
-                grph = self.recursively_add(grph, obj)
+            # Get front of the queue.
+            task = self.__tasks.pop(0)
 
-        return grph
+            # Add items.
+            self.recursively_add(task)
+            no_complete += 1
 
-    def recursively_add_serial(self, g, ref):
+            # Report if multiple of 100 tasks complete.
+            if no_complete % 100 == 0:
+                logger.info("parsed %d pages,\
+                            %d tasks complete,\
+                            %d tasks to do,\
+                            graph has %d terms.",
+                            len(self.parsed_pages),
+                            no_complete,
+                            no_tasks - 1,
+                            len(self.graph)
+                            )
+
+    def recursively_add(self, task):
         """
         Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
         subgraph with the same graph `g`. Serial implementation
@@ -167,104 +231,53 @@ class RecursiveJSONLDParser:
         :param ref: The URL of the document to (recursively) parse into the graph
         :type  ref: URIRef | str
         """
-        logger.debug("recursively_add(g=%s, ref=%s)", str(g), str(ref))
-        # First parse the document into a local g.
-        # gloc = get_graph(ref)
-        gloc = self.parse_page(ref)
+        gloc = get_graph(task)
+
+        for term in gloc:
+            logger.debug("\t %s", str(term))
+            subj, pred, obj = term
+            if str(obj) in self.__parsed_pages:
+                logger.debug("Already parsed or parsing: %s", str(obj))
+                continue
+            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
+                continue
+            if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
+                continue
+            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+                self.__tasks.append(str(obj))
+
+        if task not in self.__parsed_pages:
+            self.graph += gloc
+            self.__parsed_pages.append(task)
+
+        # Only if we are not paginating yet
+        if len(task.split("&")) > 1:
+            return
 
         # Get total item count.
-        number_of_members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+        members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+
+        logging.debug("Number of members: %d", len(members))
 
         # If there are any member, parse them recursively.
-        if number_of_members != []:
+        if members != []:
             # Convert to python type.
-            nom = number_of_members[0].toPython()
+            nom = members[0].toPython()
             if nom == 0:
-                return g + gloc
+                return
 
-            logger.info("Found %d members in %s.", nom, ref.toPython())
+            logger.debug("Found %d members in %s.", nom, gloc)
 
             # We'll apply pagination with 25 items per page.
             limit = 25
             pages = range(1, math.ceil(nom / limit) + 1)
 
             # Get each page's URL.
-            pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
+            pages = [task + "?limit={}&page={}".format(limit, page) for page in pages]
             logger.debug("# PAGES")
             for page in pages:
                 logger.debug("\t %s", page)
-
-            igraphs = (self.parse_page(page) for page in pages)
-
-            logger.info("Parsing and merging subgraphs in %s.", ref)
-            for grph in igraphs:
-                gloc = gloc + grph
-
-        return g + gloc
-
-    def recursively_add(self, g, ref):
-        """
-        Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
-        subgraph with the same graph `g`.
-
-        :param g: The graph into which all terms are to be inserted.
-        :type  g: rdflib.Graph
-
-        :param ref: The URL of the document to (recursively) parse into the graph
-        :type  ref: URIRef | str
-        """
-
-        return self.recursively_add_serial(g, ref)
-
-
-#         # First parse the document into a local g.
-#         gloc = get_graph(ref)
-#         # gloc = Graph().parse(ref)
-
-#         # Get total item count.
-#         number_of_members = [ti for ti in gloc.objects(
-#                                 predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
-
-#         # If there are any member, parse them recursively.
-#         if number_of_members != []:
-#             # Convert to python type.
-#             nom = number_of_members[0].toPython()
-#             if nom == 0:
-#                 return g + gloc
-
-#             logger.info("Found %d members in %s.", nom, ref.toPython())
-
-#             # We'll apply pagination with 25 items per page.
-#             limit = 25
-#             pages = range(1, math.ceil(nom / limit) + 1)
-
-#             # Get each page's URL.
-#             pages = [ref + "?limit={}&page={}".format(limit, page) for page in pages]
-
-#             # Get pool of workers and  distribute tasks.
-#             number_of_tasks = len(pages)
-#             number_of_processes = min(multiprocess.cpu_count(), number_of_tasks)
-#             chunk_size = number_of_tasks // number_of_processes
-
-#             logger.info("### MultiProcessing setup")
-#             logger.info("### Number of tasks:\t\t%d", number_of_tasks)
-#             logger.info("### Number of processes:\t%d", number_of_processes)
-#             logger.info("### Chunk size:\t\t%d", chunk_size)
-
-#             with ProcessPool(nodes=number_of_processes) as pool:
-#                 logger.debug("Setup pool %s.", str(pool))
-#                 list_of_graphs = pool.amap(parse_page, pages, chunksize=chunk_size).get()
-
-#                 pool.close()
-#                 pool.join()
-
-#             logger.info("Done parsing subgraphs in %s.", ref)
-
-#             logger.info("Merging subgraphs in %s.", ref)
-#             for grph in list_of_graphs:
-#                 gloc = gloc + grph
-
-#         return g + gloc
+                self.__tasks.append(page)
 
 
 def cleanup(grph):
