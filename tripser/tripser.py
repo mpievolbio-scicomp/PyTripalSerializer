@@ -188,14 +188,20 @@ class RecursiveJSONLDParser:
             self.__tasks.append(value)
 
     def parse(self):
+        """ Start the parsing loop. In each loop, the first task is processed (parsed) and
+        resulting tasks from object URIs are appended to the task queue.
+        """
 
+        # Number of complete tasks.
         no_complete = 0
 
+        # Start loop
         while True:
             no_tasks = len(self.__tasks)
             if no_tasks == 0:
                 return
 
+            # Get front of the queue.
             task = self.__tasks.pop(0)
 
             # Add items.
@@ -204,7 +210,15 @@ class RecursiveJSONLDParser:
 
             # Report if multiple of 100 tasks complete.
             if no_complete % 100 == 0:
-                logger.info("%d tasks complete, %d tasks to do", no_complete, no_tasks - 1)
+                logger.info("parsed %d pages,\
+                            %d tasks complete,\
+                            %d tasks to do,\
+                            graph has %d terms.",
+                            len(self.parsed_pages),
+                            no_complete,
+                            no_tasks - 1,
+                            len(self.graph)
+                            )
 
     def recursively_add(self, task):
         """
