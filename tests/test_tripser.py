@@ -9,7 +9,7 @@ import unittest
 
 from rdflib import BNode, Graph, URIRef
 
-from tripser.tripser import RecursiveJSONLDParser, cleanup, get_graph, remove_terms
+from tripser.tripser import RecursiveJSONLDParser, cleanup, get_graph, remove_terms, recursively_add
 
 logging.basicConfig(level=logging.INFO)
 
@@ -107,7 +107,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         """Test the main parsing loop."""
 
         parser = RecursiveJSONLDParser(
-            graph=Graph(), entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11850'
+            graph=Graph(), entry_point='http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846/annotation'
         )
 
         parser.parse()
@@ -123,10 +123,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
     def test_recursively_add_feature(self):
         """Test recursively adding terms to a graph (no members)."""
 
-        parser = RecursiveJSONLDParser('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846')
-        parser.recursively_add(task=URIRef(parser.entry_point))
-
-        g = parser.graph
+        g,_ = recursively_add(URIRef('http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/11846'), [])
 
         self.assertEqual(len([(s, p, o) for (s, p, o) in g if not (isinstance(s, BNode) or isinstance(o, BNode))]), 42)
 

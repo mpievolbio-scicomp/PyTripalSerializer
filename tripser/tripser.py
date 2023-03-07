@@ -5,13 +5,30 @@ import copy
 import json
 import logging
 import math
+from time import sleep
 import urllib
 
 import requests
 from rdflib import Graph, Namespace, URIRef
+from redis import Redis
+from rq import Queue
+
+from rq.registry import StartedJobRegistry, ScheduledJobRegistry
+from rq.job import Job
+
+# For debugging
+DEBUG = False
+# DEBUG = True
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
+
+# Setup queue
+conn = Redis()
+queue = Queue(connection=conn)
+if DEBUG:
+    from fakeredis import FakeStrictRedis
+    queue = Queue(is_async=False, connection=FakeStrictRedis())
 
 
 class RecursiveJSONLDParser:
@@ -35,6 +52,8 @@ class RecursiveJSONLDParser:
         # Init hidden attributes.
         self.__parsed_pages = []
         self.__tasks = []
+        self.__finalized_jobs = []
+
 
         # Init public attributes.
         self.graph = graph
@@ -159,6 +178,15 @@ class RecursiveJSONLDParser:
         self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
 
     @property
+    def tasks(self):
+        return self.__tasks
+
+    @tasks.setter
+    def tasks(self, value):
+        raise RuntimeError("tasks is a read-only property.")
+
+
+    @property
     def parsed_pages(self):
         return self.__parsed_pages
 
@@ -174,7 +202,7 @@ class RecursiveJSONLDParser:
     def entry_point(self, value):
 
         if value is None:
-            logging.warning("No entry point set. Set the entry point before parsing.")
+            logger.warning("No entry point set. Set the entry point before parsing.")
             self.__entry_point = None
             return
 
@@ -194,91 +222,144 @@ class RecursiveJSONLDParser:
 
         # Number of complete tasks.
         no_complete = 0
-
         # Start loop
         while True:
             no_tasks = len(self.__tasks)
+            logger.debug("Currently %d tasks in queue.", no_tasks)
+
+            no_started_jobs = queue.started_job_registry.count
+            no_scheduled_jobs = queue.scheduled_job_registry.count
+            no_failed_jobs = queue.failed_job_registry.count
+            no_jobs = no_started_jobs + no_scheduled_jobs
+            logger.debug("%d jobs started.", no_started_jobs)
+            logger.debug("%d jobs scheduled", no_scheduled_jobs)
+            logger.debug("%d jobs failed", no_failed_jobs)
+            logger.debug("%d jobs in redis queue.", no_jobs)
+
             if no_tasks == 0:
+                if no_jobs > 0:
+                    sleep(10)
+                    continue
+                sleep(10)
                 return
 
             # Get front of the queue.
+            logger.debug("Popping front task.")
             task = self.__tasks.pop(0)
+            logger.debug("Current task: %s", task)
+
+            if task in self.__parsed_pages:
+                logger.debug("\t... is already parsed.")
+                continue
 
             # Add items.
-            self.recursively_add(task)
-            no_complete += 1
+            logger.debug("Queueing redis job.")
+            parse_job = queue.enqueue(recursively_add,
+                                      task,
+                                      self.parsed_pages,
+                                      # on_success=update_graph_and_tasks,
+                                      # on_failure=failure,
+                                      )
+            sleep(2)
 
-            # Report if multiple of 100 tasks complete.
-            if no_complete % 100 == 0:
-                logger.info("parsed %d pages,\
-                            %d tasks complete,\
-                            %d tasks to do,\
-                            graph has %d terms.",
-                            len(self.parsed_pages),
-                            no_complete,
-                            no_tasks - 1,
-                            len(self.graph)
-                            )
+            # Update
+            finished_job_registry = queue.finished_job_registry
+            for job_id in finished_job_registry.get_job_ids():
+                if job_id not in self.__finalized_jobs:
+                    job = Job.fetch(job_id, connection=conn)
+                    new_graph, new_tasks = job.return_value
+                    self.graph += new_graph
+                    self.__tasks += new_tasks
 
-    def recursively_add(self, task):
-        """
-        Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
-        subgraph with the same graph `g`. Serial implementation
+                    self.__finalized_jobs.append(job_id)
 
-        :param g: The graph into which all terms are to be inserted.
-        :type  g: rdflib.Graph
+            # # Report if multiple of 100 tasks complete.
+            # if no_complete % 10 == 0:
+            #     logger.info("parsed %d pages,\
+            #                 %d tasks complete,\
+            #                 %d tasks to do,\
+            #                 graph has %d terms.",
+            #                 len(self.parsed_pages),
+            #                 no_complete,
+            #                 no_tasks - 1,
+            #                 len(self.graph)
+            #                 )
 
-        :param ref: The URL of the document to (recursively) parse into the graph
-        :type  ref: URIRef | str
-        """
-        gloc = get_graph(task)
+def recursively_add(task, parsed_pages):
+    """
+    Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
+    subgraph with the same graph `g`. Serial implementation
 
-        for term in gloc:
-            logger.debug("\t %s", str(term))
-            subj, pred, obj = term
-            if str(obj) in self.__parsed_pages:
-                logger.debug("Already parsed or parsing: %s", str(obj))
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
-                continue
-            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
-                self.__tasks.append(str(obj))
+    :param g: The graph into which all terms are to be inserted.
+    :type  g: rdflib.Graph
 
-        if task not in self.__parsed_pages:
-            self.graph += gloc
-            self.__parsed_pages.append(task)
+    :param ref: The URL of the document to (recursively) parse into the graph
+    :type  ref: URIRef | str
+    """
+    gloc = get_graph(task)
+    new_tasks = []
 
-        # Only if we are not paginating yet
-        if len(task.split("&")) > 1:
-            return
+    for term in gloc:
+        logger.debug("\t %s", str(term))
+        subj, pred, obj = term
+        if str(obj) in parsed_pages:
+            logger.debug("Already parsed or parsing: %s", str(obj))
+            continue
+        if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
+            continue
+        if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
+            continue
+        if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+            new_tasks.append(str(obj))
 
-        # Get total item count.
-        members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+    # Only if we are not paginating yet
+    if len(task.split("&")) > 1:
+        return gloc, new_tasks
 
-        logging.debug("Number of members: %d", len(members))
+    # Get total item count.
+    members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
 
-        # If there are any member, parse them recursively.
-        if members != []:
-            # Convert to python type.
-            nom = members[0].toPython()
-            if nom == 0:
-                return
+    logger.debug("Number of members: %d", len(members))
 
-            logger.debug("Found %d members in %s.", nom, gloc)
+    # If there are any member, parse them recursively.
+    if members != []:
+        # Convert to python type.
+        nom = members[0].toPython()
+        if nom == 0:
+            return gloc, new_tasks
 
-            # We'll apply pagination with 25 items per page.
-            limit = 25
-            pages = range(1, math.ceil(nom / limit) + 1)
+        logger.debug("Found %d members in %s.", nom, gloc)
 
-            # Get each page's URL.
-            pages = [task + "?limit={}&page={}".format(limit, page) for page in pages]
-            logger.debug("# PAGES")
-            for page in pages:
-                logger.debug("\t %s", page)
-                self.__tasks.append(page)
+        # We'll apply pagination with 25 items per page.
+        limit = 25
+        pages = range(1, math.ceil(nom / limit) + 1)
 
+        # Get each page's URL.
+        pages = [task + "?limit={}&page={}".format(limit, page) for page in pages]
+        logger.debug("# PAGES")
+        for page in pages:
+            logger.debug("\t %s", page)
+            new_tasks.append(page)
+
+    return gloc, new_tasks
+
+
+def update_graph_and_tasks(job, connection, result, *args, **kwargs):
+    logger.debug("args: %s", str(args))
+    logger.debug("kwargs: %s", str(kwargs))
+    logger.debug("Result: %s", str(result))
+
+    new_graph, new_tasks = result
+    logger.debug(len(new_graph), len(new_tasks))
+    parser.graph += new_graph
+    parser.tasks += new_tasks
+
+def failure(job, connection, type, value, traceback):
+    logger.error(job)
+    logger.error(connection)
+    logger.error(type)
+    logger.error(value)
+    logger.error(traceback)
 
 def cleanup(grph):
     """
