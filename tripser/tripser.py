@@ -14,10 +14,12 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+from dask.distributed import Client
+
 class RecursiveJSONLDParser:
     """:class: This class implements recursive parsing of JSON-LD documents."""
 
-    def __init__(self, entry_point=None, graph=None, serialize_nodes=False):
+    def __init__(self, entry_point=None, graph=None, serialize_nodes=False, client=None):
         """Initialize the recursine JSON-LD parser.
 
         :param root: The entry point for parsing.
@@ -40,6 +42,9 @@ class RecursiveJSONLDParser:
         self.graph = graph
         self.serialize_nodes = serialize_nodes
         self.entry_point = entry_point
+
+        if client is not None:
+            self.client = Client(client)
 
     @property
     def serialize_nodes(self):
@@ -196,17 +201,28 @@ class RecursiveJSONLDParser:
         no_complete = 0
 
         # Start loop
+
+        tasks = self.__tasks
+
         while True:
-            no_tasks = len(self.__tasks)
-            if no_tasks == 0:
-                return
-
-            # Get front of the queue.
-            task = self.__tasks.pop(0)
-
             # Add items.
-            self.recursively_add(task)
-            no_complete += 1
+            no_tasks = len(tasks)
+            parsed_pages = self.parsed_pages
+
+            client.scatter(parsed_pages, broadcast=True)
+
+            futures = self.client.map(recursively_add, tasks)
+
+            tasks = self.client.gather(futures)
+
+
+            for graph in graphs:
+                self.graph += graph
+
+            for parsed_book in parsed_books:
+                self.parsed_pages += parsed_book
+
+            no_complete += no_tasks
 
             # Report if multiple of 100 tasks complete.
             if no_complete % 100 == 0:
@@ -220,65 +236,64 @@ class RecursiveJSONLDParser:
                             len(self.graph)
                             )
 
-    def recursively_add(self, task):
-        """
-        Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
-        subgraph with the same graph `g`. Serial implementation
+def recursively_add(task, graph, parsed_pages):
+    """
+    Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
+    subgraph with the same graph `g`. Serial implementation
 
-        :param g: The graph into which all terms are to be inserted.
-        :type  g: rdflib.Graph
+    :param g: The graph into which all terms are to be inserted.
+    :type  g: rdflib.Graph
 
-        :param ref: The URL of the document to (recursively) parse into the graph
-        :type  ref: URIRef | str
-        """
-        gloc = get_graph(task)
+    :param ref: The URL of the document to (recursively) parse into the graph
+    :type  ref: URIRef | str
+    """
+    gloc = get_graph(task)
 
-        for term in gloc:
-            logger.debug("\t %s", str(term))
-            subj, pred, obj = term
-            if str(obj) in self.__parsed_pages:
-                logger.debug("Already parsed or parsing: %s", str(obj))
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
-                continue
-            if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
-                continue
-            if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
-                self.__tasks.append(str(obj))
+    collected_tasks = []
 
-        if task not in self.__parsed_pages:
-            self.graph += gloc
-            self.__parsed_pages.append(task)
+    for term in gloc:
+        logger.debug("\t %s", str(term))
+        subj, pred, obj = term
+        if str(obj) in parsed_pages:
+            logger.debug("Already parsed or parsing: %s", str(obj))
+            continue
+        if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
+            continue
+        if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
+            continue
+        if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
+            collected_tasks.append(str(obj))
 
-        # Only if we are not paginating yet
-        if len(task.split("&")) > 1:
-            return
+    if task not in parsed_pages:
+        parsed_pages.append(task)
 
-        # Get total item count.
-        members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
+    # Only if we are not paginating yet
+    if len(task.split("&")) > 1:
+        return collected_tasks, gloc, parsed_pages
 
-        logging.debug("Number of members: %d", len(members))
+    # Get total item count.
+    members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
 
-        # If there are any member, parse them recursively.
-        if members != []:
-            # Convert to python type.
-            nom = members[0].toPython()
-            if nom == 0:
-                return
+    logging.debug("Number of members: %d", len(members))
 
-            logger.debug("Found %d members in %s.", nom, gloc)
+    # If there are any member, parse them recursively.
+    if members != []:
+        # Convert to python type.
+        nom = members[0].toPython()
+        if nom == 0:
+            return collected_tasks, gloc, parsed_pages
 
-            # We'll apply pagination with 25 items per page.
-            limit = 25
-            pages = range(1, math.ceil(nom / limit) + 1)
+        logger.debug("Found %d members in %s.", nom, gloc)
 
-            # Get each page's URL.
-            pages = [task + "?limit={}&page={}".format(limit, page) for page in pages]
-            logger.debug("# PAGES")
-            for page in pages:
-                logger.debug("\t %s", page)
-                self.__tasks.append(page)
+        # We'll apply pagination with 25 items per page.
+        limit = 25
+        pages = range(1, math.ceil(nom / limit) + 1)
 
+        # Get each page's URL.
+        collected_tasks += [task + "?limit={}&page={}".format(limit, page) for page in pages]
+        logger.debug("# PAGES")
+
+        return collected_tasks, gloc, parsed_pages
 
 def cleanup(grph):
     """
