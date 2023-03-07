@@ -2,7 +2,9 @@
 """Console script for tripser."""
 
 import logging
+
 import click
+
 from tripser import tripser
 
 logging.basicConfig(level=logging.INFO)
