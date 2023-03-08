@@ -44,7 +44,10 @@ class RecursiveJSONLDParser:
         self.entry_point = entry_point
 
         if client is not None:
-            self.client = Client(client)
+            if isinstance(client, Client):
+                self.client = client
+            else:
+                self.client = Client(client)
 
     @property
     def serialize_nodes(self):
