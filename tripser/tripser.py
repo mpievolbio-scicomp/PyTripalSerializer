@@ -210,14 +210,16 @@ class RecursiveJSONLDParser:
             # Add items.
             no_tasks = len(tasks)
 
-            results = [self.client.submit(recursively_add, task, graph, parsed_pages) for task in tasks]
+            results = [self.client.submit(recursively_add, task) for task in tasks]
 
+            # Move scheduled tasks to parsed_pages for bookkeeping.
+            parsed_pages += [t for t in tasks]
+
+            # Empty task list.
             tasks = []
-
             for result in self.client.gather(results):
                 tasks += result[0]
                 graph += result[1]
-                parsed_pages += result[2]
 
             no_complete += no_tasks
 
@@ -237,7 +239,7 @@ class RecursiveJSONLDParser:
             # No need to update self.graph since local variable graph is a reference on self.graph.
 
 
-def recursively_add(task, graph, parsed_pages):
+def recursively_add(task):
     """
     Parse the document in `ref` into the graph `g`. Then call this function on all 'member' objects of the
     subgraph with the same graph `g`. Serial implementation
@@ -255,9 +257,6 @@ def recursively_add(task, graph, parsed_pages):
     for term in gloc:
         logger.debug("\t %s", str(term))
         subj, pred, obj = term
-        if str(obj) in parsed_pages:
-            logger.debug("Already parsed or parsing: %s", str(obj))
-            continue
         if pred == URIRef("http://www.w3.org/ns/hydra/core#PartialCollectionView"):
             continue
         if pred == URIRef("http://www.w3.org/ns/hydra/core#totalItems"):
@@ -265,12 +264,9 @@ def recursively_add(task, graph, parsed_pages):
         if obj.startswith("http://pflu.evolbio.mpg.de/web-services/content/"):
             collected_tasks.append(str(obj))
 
-    if task not in parsed_pages:
-        parsed_pages.append(URIRef(task))
-
     # Only if we are not paginating yet
     if len(task.split("&")) > 1:
-        return collected_tasks, gloc, parsed_pages
+        return collected_tasks, gloc
 
     # Get total item count.
     members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
@@ -282,7 +278,7 @@ def recursively_add(task, graph, parsed_pages):
         # Convert to python type.
         nom = members[0].toPython()
         if nom == 0:
-            return collected_tasks, gloc, parsed_pages
+            return collected_tasks, gloc
 
         logger.debug("Found %d members in %s.", nom, gloc)
 
@@ -294,7 +290,7 @@ def recursively_add(task, graph, parsed_pages):
         collected_tasks += [URIRef(task + "?limit={}&page={}".format(limit, page)) for page in pages]
         logger.debug("# PAGES")
 
-    return collected_tasks, gloc, parsed_pages
+    return collected_tasks, gloc
 
 def cleanup(grph):
     """
