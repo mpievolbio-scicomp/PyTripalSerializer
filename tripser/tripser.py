@@ -223,7 +223,7 @@ class RecursiveJSONLDParser:
 
             no_complete += no_tasks
 
-            tasks = [task for task in tasks if task not in parsed_pages]
+            tasks = [task for task in set(tasks) if task not in parsed_pages]
 
             # Report if multiple of 100 tasks complete.
             if no_complete % 100 == 0:
