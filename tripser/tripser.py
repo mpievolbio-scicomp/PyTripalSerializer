@@ -202,27 +202,26 @@ class RecursiveJSONLDParser:
 
         # Start loop
 
+        parsed_pages = self.__parsed_pages
+        graph = self.__graph
         tasks = self.__tasks
 
-        while True:
+        while len(tasks) > 0:
             # Add items.
             no_tasks = len(tasks)
-            parsed_pages = self.parsed_pages
 
-            client.scatter(parsed_pages, broadcast=True)
+            results = [self.client.submit(recursively_add, task, graph, parsed_pages) for task in tasks]
 
-            futures = self.client.map(recursively_add, tasks)
+            tasks = []
 
-            tasks = self.client.gather(futures)
-
-
-            for graph in graphs:
-                self.graph += graph
-
-            for parsed_book in parsed_books:
-                self.parsed_pages += parsed_book
+            for result in self.client.gather(results):
+                tasks += result[0]
+                graph += result[1]
+                parsed_pages += result[2]
 
             no_complete += no_tasks
+
+            tasks = [task for task in tasks if task not in parsed_pages]
 
             # Report if multiple of 100 tasks complete.
             if no_complete % 100 == 0:
@@ -230,11 +229,13 @@ class RecursiveJSONLDParser:
                             %d tasks complete,\
                             %d tasks to do,\
                             graph has %d terms.",
-                            len(self.parsed_pages),
+                            len(parsed_pages),
                             no_complete,
                             no_tasks - 1,
-                            len(self.graph)
+                            len(graph)
                             )
+            # No need to update self.graph since local variable graph is a reference on self.graph.
+
 
 def recursively_add(task, graph, parsed_pages):
     """
@@ -265,7 +266,7 @@ def recursively_add(task, graph, parsed_pages):
             collected_tasks.append(str(obj))
 
     if task not in parsed_pages:
-        parsed_pages.append(task)
+        parsed_pages.append(URIRef(task))
 
     # Only if we are not paginating yet
     if len(task.split("&")) > 1:
@@ -290,10 +291,10 @@ def recursively_add(task, graph, parsed_pages):
         pages = range(1, math.ceil(nom / limit) + 1)
 
         # Get each page's URL.
-        collected_tasks += [task + "?limit={}&page={}".format(limit, page) for page in pages]
+        collected_tasks += [URIRef(task + "?limit={}&page={}".format(limit, page)) for page in pages]
         logger.debug("# PAGES")
 
-        return collected_tasks, gloc, parsed_pages
+    return collected_tasks, gloc, parsed_pages
 
 def cleanup(grph):
     """
