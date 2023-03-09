@@ -3,18 +3,16 @@
 
 import copy
 import json
-import logging
 import math
 import urllib
 
 import requests
 from rdflib import Graph, Namespace, URIRef
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-
 
 from dask.distributed import Client
+from dask.distributed.scheduler import logger
+
 
 class RecursiveJSONLDParser:
     """:class: This class implements recursive parsing of JSON-LD documents."""
@@ -226,7 +224,7 @@ class RecursiveJSONLDParser:
 
             no_complete += no_tasks
 
-            tasks = [task for task in set(tasks) if task not in parsed_pages]
+            tasks = list(set(tasks).difference(set(parsed_pages)))
 
             # Report if multiple of 100 tasks complete.
             if no_complete % 100 == 0:
