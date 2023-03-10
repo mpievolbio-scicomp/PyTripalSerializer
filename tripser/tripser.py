@@ -17,7 +17,7 @@ from dask.distributed.scheduler import logger
 class RecursiveJSONLDParser:
     """:class: This class implements recursive parsing of JSON-LD documents."""
 
-    def __init__(self, entry_point=None, graph=None, serialize_nodes=False, client=None):
+    def __init__(self, entry_point=None, graph=None, serialize_nodes=False, client=None, scheduler='127.0.0.1:8786'):
         """Initialize the recursine JSON-LD parser.
 
         :param root: The entry point for parsing.
@@ -45,7 +45,15 @@ class RecursiveJSONLDParser:
             if isinstance(client, Client):
                 self.client = client
             else:
-                self.client = Client(client)
+                raise TypeError("Parameter 'client' must be of type dask.distributed.Client, found {}.".format(type(client)))
+        elif scheduler is not None:
+            try:
+                self.client = Client(scheduler)
+            except:
+                raise TypeError('Must pass a valid scheduler URL, typically 127.0.0.1:8786.')
+        else:
+            raise AttributeError("Pass either client or scheduler.")
+
 
     @property
     def serialize_nodes(self):
@@ -180,7 +188,7 @@ class RecursiveJSONLDParser:
     def entry_point(self, value):
 
         if value is None:
-            logging.warning("No entry point set. Set the entry point before parsing.")
+            logger.warning("No entry point set. Set the entry point before parsing.")
             self.__entry_point = None
             return
 
@@ -211,6 +219,9 @@ class RecursiveJSONLDParser:
             # Add items.
             no_tasks = len(tasks)
 
+            # Process in chunks to avoid DoS breakdown.
+            chunk_length = 8
+            task_chunks = [tasks[chunk_length*s:chunk_length*(s+1)] for s in range(len(tasks//chunk_length))]
             results = [self.client.submit(recursively_add, task) for task in tasks]
 
             # Move scheduled tasks to parsed_pages for bookkeeping.
@@ -272,7 +283,7 @@ def recursively_add(task):
     # Get total item count.
     members = [ti for ti in gloc.objects(predicate=URIRef("http://www.w3.org/ns/hydra/core#totalItems"))]
 
-    logging.debug("Number of members: %d", len(members))
+    logger.debug("Number of members: %d", len(members))
 
     # If there are any member, parse them recursively.
     if members != []:

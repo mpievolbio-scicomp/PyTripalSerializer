@@ -7,6 +7,8 @@ import os
 import shutil
 import unittest
 
+from dask.distributed import Client
+
 from rdflib import BNode, Graph, URIRef
 
 from tripser.tripser import RecursiveJSONLDParser, cleanup, get_graph, remove_terms
@@ -30,6 +32,7 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
                 os.remove(item)
             elif os.path.isdir(item):
                 shutil.rmtree(item)
+
 
     def test_get_graph_dbxref(self):
         """Test parsing a URL for dbxref's into a graph."""
@@ -76,6 +79,8 @@ class TestRecursiveJSONLDParser(unittest.TestCase):
         self.assertIsNone(parser.entry_point)
         self.assertFalse(parser.serialize_nodes)
         self.assertIsInstance(parser.graph, Graph)
+
+        self.assertIsInstance(parser.client, Client)
 
     def test_construction_with_graph(self):
         """Test passing an existing graph to the constructor."""
