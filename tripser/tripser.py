@@ -5,6 +5,7 @@ import copy
 import json
 import math
 import urllib
+import time
 
 import requests
 from rdflib import Graph, Namespace, URIRef
@@ -221,11 +222,14 @@ class RecursiveJSONLDParser:
 
             # Process in chunks to avoid DoS breakdown.
             chunk_length = 8
-            task_chunks = [tasks[chunk_length*s:chunk_length*(s+1)] for s in range(len(tasks//chunk_length))]
-            results = [self.client.submit(recursively_add, task) for task in tasks]
+            task_chunks = [tasks[chunk_length*s:chunk_length*(s+1)] for s in range(len(tasks)//chunk_length)]
+            results = []
+            for chunk in task_chunks:
+                results += [self.client.submit(recursively_add, task) for task in chunk]
+                time.sleep(10)
 
-            # Move scheduled tasks to parsed_pages for bookkeeping.
-            parsed_pages += [t for t in tasks]
+                # Move scheduled tasks to parsed_pages for bookkeeping.
+                parsed_pages += [t for t in chunk]
 
             # Empty task list.
             tasks = []
