@@ -86,92 +86,6 @@ class RecursiveJSONLDParser:
             # Copy construct to leave passed graph as is.
             self.__graph = copy.deepcopy(value)
 
-        self.__graph.bind('ssr', Namespace("http://semanticscience.org/resource/"))
-        self.__graph.bind('edam', Namespace("http://edamontology.org/"))
-        self.__graph.bind('schema', Namespace("https://schema.org/"))
-        self.__graph.bind('obo', Namespace("http://purl.obolibrary.org/obo/"))
-        self.__graph.bind('so', Namespace("http://www.sequenceontology.org/browser/current_svn/term/SO:"))
-        self.__graph.bind('hydra', Namespace("http://www.w3.org/ns/hydra/core#"))
-        self.__graph.bind('ncbitax', Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id="))
-        self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
-        self.__graph.bind("pflu", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/"))
-        self.__graph.bind("tripal3", Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/"))
-
-        self.__graph.bind("analysis", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Analysis/"))
-        self.__graph.bind(
-            "binding_site", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Binding_Site/")
-        )
-        self.__graph.bind(
-            "biological_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region/")
-        )
-        self.__graph.bind("cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/"))
-        self.__graph.bind("exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/"))
-        self.__graph.bind("gene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/"))
-        self.__graph.bind("genetic_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Map/"))
-        self.__graph.bind(
-            "genetic_marker", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Marker/")
-        )
-        self.__graph.bind(
-            "genome_annotation", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Annotation/")
-        )
-        self.__graph.bind(
-            "genome_assembly", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Assembly/")
-        )
-        self.__graph.bind(
-            "germplasm_accession",
-            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Germplasm_Accession/"),
-        )
-        self.__graph.bind(
-            "heritable_phenotypic_marker",
-            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Heritable_Phenotypic_Marker/"),
-        )
-        self.__graph.bind("mrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/"))
-        self.__graph.bind("ncrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/ncRNA/"))
-        self.__graph.bind("organism", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/"))
-        self.__graph.bind(
-            "phylogenetic_tree", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Phylogenetic_Tree/")
-        )
-        self.__graph.bind(
-            "physical_map", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Physical_Map/")
-        )
-        self.__graph.bind(
-            "protein_binding_site",
-            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Protein_Binding_Site/"),
-        )
-        self.__graph.bind("pseudogene", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogene/"))
-        self.__graph.bind(
-            "pseudogenic_cds", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_CDS/")
-        )
-        self.__graph.bind(
-            "pseudogenic_exon", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Exon/")
-        )
-        self.__graph.bind(
-            "pseudogenic_transcript",
-            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Transcript/"),
-        )
-        self.__graph.bind("publication", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Publication/"))
-        self.__graph.bind("qtl", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/QTL/"))
-        self.__graph.bind(
-            "regulatory_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Regulatory_Region/")
-        )
-        self.__graph.bind(
-            "repeat_region", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Repeat_Region/")
-        )
-        self.__graph.bind("rrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/RRNA/"))
-        self.__graph.bind(
-            "sequence_difference",
-            Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Difference/"),
-        )
-        self.__graph.bind(
-            "sequence_variant", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Variant/")
-        )
-        self.__graph.bind(
-            "signal_peptide", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Signal_Peptide/")
-        )
-        self.__graph.bind("stem_loop", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Stem_Loop/"))
-        self.__graph.bind("tmrna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TmRNA/"))
-        self.__graph.bind("trna", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/"))
-        self.__graph.bind("transcript", Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/"))
 
     @property
     def parsed_pages(self):
@@ -324,6 +238,8 @@ def cleanup(grph):
     )
 
     remove_terms(grph, (None, URIRef('http://www.w3.org/ns/hydra/core#PartialCollectionView'), None))
+    
+    
 
 
 def remove_terms(grph, terms):
@@ -388,3 +304,97 @@ def get_graph(page, serialize=False):
         grph.serialize(ofname)
 
     return grph
+
+SSR = Namespace("http://semanticscience.org/resource/")
+EDAM = Namespace("http://edamontology.org/")
+SCHEMA = Namespace("https://schema.org/")
+OBO = Namespace("http://purl.obolibrary.org/obo/")
+SO = Namespace("http://purl.obolibrary.org/obo/so#")
+HYDRA = Namespace("http://www.w3.org/ns/hydra/core#")
+NCBITAX = Namespace("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=")
+TRANSCRIPT = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
+PFLU = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/")
+TRIPAL3 = Namespace("http://pflu.evolbio.mpg.de/cv/lookup/local/")
+LOCAL = Namespace("http://pflu.evolbio.mpg.de/cv//local/")
+Analysis = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Analysis/")
+Binding_Site = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Binding_Site/") 
+Biological_Region = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Biological_Region/") 
+CDS = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/CDS/")
+Exon = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Exon/")
+Gene = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Gene/")
+Genetic_Map = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Map/")
+Genetic_Marker = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genetic_Marker/") 
+Genome_Annotation = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Annotation/") 
+Genome_Assembly = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Genome_Assembly/") 
+Germplasm_Accession = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Germplasm_Accession/") 
+heritable_phenotypic_marker = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Heritable_Phenotypic_Marker/") 
+mRNA = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/mRNA/")
+ncRNA = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/ncRNA/")
+Organism = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Organism/")
+Phylogenetic_Tree = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Phylogenetic_Tree/") 
+Physical_Map = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Physical_Map/") 
+Protein_Binding_Site = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Protein_Binding_Site/") 
+Pseudogene = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogene/")
+Pseudogenic_CDS = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_CDS/") 
+Pseudogenic_Exon = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Exon/") 
+Pseudogenic_Transcript = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Pseudogenic_Transcript/") 
+Publication = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Publication/")
+QTL = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/QTL/")
+Regulatory_Region = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Regulatory_Region/") 
+Repeat_Region = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Repeat_Region/") 
+rRNA = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/RRNA/")
+Sequence_Difference = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Difference/") 
+Sequence_Variant = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Sequence_Variant/") 
+Signal_Peptide = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Signal_Peptide/") 
+Stem_Loop = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Stem_Loop/")
+tMRNA = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TmRNA/")
+tRNA = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/TRNA/")
+Transcript = Namespace("http://pflu.evolbio.mpg.de/web-services/content/v0.1/Transcript/")
+
+def set_bindings(graph):
+    """ Bind graph to namespaces """
+    graph.bind('ssr', SSR )
+    graph.bind('edam', EDAM)
+    graph.bind('schema', SCHEMA)
+    graph.bind('OBO', OBO)
+    graph.bind('so', SO)
+    graph.bind("SO", Namespace("http://purl.obolibrary.org/obo/SO_"))
+    graph.bind('hydra', HYDRA)
+    graph.bind('ncbitax', NCBITAX)
+    graph.bind("pflu", PFLU)
+    graph.bind("tripal3", TRIPAL3)
+    graph.bind("local", LOCAL)
+    graph.bind("Analysis", Analysis)
+    graph.bind("Binding_Site", Binding_Site)
+    graph.bind("Biological_Region", Biological_Region)
+    graph.bind("CDS", CDS)
+    graph.bind("Exon", Exon)
+    graph.bind("Gene", Gene)
+    graph.bind("Genetic_Map", Genetic_Map)
+    graph.bind("Genetic_Marker", Genetic_Marker)
+    graph.bind("Genome_Annotation", Genome_Annotation)
+    graph.bind("Genome_Assembly", Genome_Assembly)
+    graph.bind("Germplasm_Accession", Germplasm_Accession)
+    graph.bind("heritable_phenotypic_marker", heritable_phenotypic_marker)
+    graph.bind("mRNA", mRNA)
+    graph.bind("ncRNA", ncRNA)
+    graph.bind("Organism", Organism)
+    graph.bind("Phylogenetic_Tree", Phylogenetic_Tree)
+    graph.bind("Physical_Map", Physical_Map)
+    graph.bind("Protein_Binding_Site", Protein_Binding_Site)
+    graph.bind("Pseudogene", Pseudogene)
+    graph.bind("Pseudogenic_CDS", Pseudogenic_CDS)
+    graph.bind("Pseudogenic_Exon", Pseudogenic_Exon)
+    graph.bind("Pseudogenic_Transcript", Pseudogenic_Transcript)
+    graph.bind("Publication", Publication)
+    graph.bind("QTL", QTL)
+    graph.bind("Regulatory_Region", Regulatory_Region)
+    graph.bind("Repeat_Region", Repeat_Region)
+    graph.bind("rRNA", rRNA)
+    graph.bind("Sequence_Difference", Sequence_Difference)
+    graph.bind("Sequence_Variant", Sequence_Variant)
+    graph.bind("Signal_Peptide", Signal_Peptide)
+    graph.bind("Stem_Loop", Stem_Loop)
+    graph.bind("tMRNA", tMRNA)
+    graph.bind("tRNA", tRNA)
+    graph.bind("Transcript", Transcript)
